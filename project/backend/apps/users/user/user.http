@@ -1,0 +1,190 @@
+# Создать (зарегистрировать) пользователя User
+POST /fit-friends/users/register HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "user@user1.ru",
+  "password": "123456",
+  "gender": "Male",
+  "dateBirth" : "2011-10-05T14:48:00.000Z",
+  "role" : "User",
+  "location" : "Pionerskaya",
+  "level" : "Beginner",
+  "trainingStyle" : "Yoga",
+  "features" : {
+    "trainingTime" : "Max30",
+    "caloriesLoss" : 1000,
+    "caloriesLossPerDay" : 1000,
+    "isReadyForTraining" : true
+  }
+}
+###
+
+# Создать (зарегистрировать) пользователя Coach
+POST /fit-friends/users/register HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "user@coach1.ru",
+  "password": "123456",
+  "gender": "Male",
+  "dateBirth" : "2011-10-05T14:48:00.000Z",
+  "role" : "Coach",
+  "location" : "Pionerskaya",
+  "level" : "Beginner",
+  "trainingStyle" : "Yoga",
+  "features" : {
+    "merits" : "Master of sports",
+    "isPersonalCoach" : true
+  }
+ }
+###
+
+# Удалить пользователя
+DELETE /fit-friends/users/1 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckB1c2VyMS5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjgwMDI1MjI1LCJleHAiOjE2ODAwMjYxMjV9.APu2Bw7obEu4r-ErzEzpzC_fk9HgciOMMN-iAs273Ps
+###
+
+# Проверить авторизацию пользователя (ожидает access_token)
+GET /fit-friends/users/login HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkZpbGlkb3IgWmVsZW5peSIsInJvbGUiOiJVc2VyIiwicmVmcmVzaFRva2VuSWQiOiI4ODA4YWQxNi1kMDZiLTQyODQtOWM2MS03NjBjYjQ0N2E2OGIiLCJpYXQiOjE2NzkzMzM0OTgsImV4cCI6MTY3OTkzODI5OH0.o7XDjY4-Bh9A7U7QJ29aSk-nOFcl8rqfkTaBFW2bQA8
+###
+
+# Обновить авторизацию пользователя (ожидает refresh_token, выдает повую пару токенов)
+POST /fit-friends/users/refresh HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJyZWZyZXNoVG9rZW5JZCI6ImJhZjJlNjUxLTlkMTAtNGIwMi04ODQ2LWY5NDliMDVkZDYwMCIsImlhdCI6MTY4MzEyMTg5OCwiZXhwIjoxNjgzNzI2Njk4fQ.rYfjXxvn5l90RMsS6p3p3FvgzDTHzB01IbclzDNJJDo
+###
+
+# Выход из аккаунта
+POST /fit-friends/users/logout HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkZpbGlkb3IgWmVsZW5peSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjc5NTA1MTY3LCJleHAiOjE2Nzk1MDYwNjd9.rsppzmuVW-aKaIuohseIbg3UB-B2npsu3gTrANGlvdU
+###
+
+# Авторизоваться (user)
+POST /fit-friends/users/login HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "email": "user@user.ru",
+  "password": "123456"
+}
+###
+
+# Авторизоваться (coach)
+POST /fit-friends/users/login HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "email": "user@coach.ru",
+  "password": "123456"
+}
+###
+
+# Редактировать пользователя
+PATCH  /fit-friends/users/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MDExMjE5NywiZXhwIjoxNjgwMTEzMDk3fQ.ZQxYdO5O3NZML_GreKBNU8DWI1EoehgXCknKpNJgkW4
+Content-Type: application/json
+
+{
+  "name": "Filidor Zeleniy",
+  "role" : "User",
+  "features" : {
+    "trainingTime" : "Max50"
+  }
+}
+###
+
+#  Загрузка аватарки пользователя
+POST /fit-friends/users/avatar/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MjkzODI3OCwiZXhwIjoxNjgyOTM5MTc4fQ.oYXOJh97i_B4Hbrztv7_lcXG_WWUPMzzFCA7TCJnvd4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="05.jpg"
+Content-Type: image/jpeg
+
+< D:/загрузки/05.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+#  Получить аватарку пользователя
+GET /fit-friends/users/avatar/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MjkzODI3OCwiZXhwIjoxNjgyOTM5MTc4fQ.oYXOJh97i_B4Hbrztv7_lcXG_WWUPMzzFCA7TCJnvd4
+###
+
+#  Загрузка сертификата тренера
+POST /fit-friends/users/certificate/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MzEyMTQ2NiwiZXhwIjoxNjgzMTIyMzY2fQ.Flc2v3HoQg3048gefiFY0C_gbtprcUrn36ie1INgM9o
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificate"; filename="123.pdf"
+Content-Type: application/pdf
+
+< D:/загрузки/123.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+#  Получить сертификат тренера
+GET /fit-friends/users/certificate/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MjkzNzY4MSwiZXhwIjoxNjgyOTM4NTgxfQ.Pq7wi3XIBgj36QUCuKJmX7-d-zfV6hU-08LJqHzr3Aw
+###
+
+#  Получить список пользователей
+# ?limit=50&page=0&sortType=date&sortDirection=desc
+GET /fit-friends/users?limit=50&page=0&sortType=date&sortDirection=desc HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4Mjk0OTA1MywiZXhwIjoxNjgyOTQ5OTUzfQ.9FtJgRV69lhUMMMm_sfmJ0Q02gMB6_eFsiB4XNCcV0w
+###
+
+#  Получить информацию о пользователе
+GET /fit-friends/users/1 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4Mjk0OTA1MywiZXhwIjoxNjgyOTQ5OTUzfQ.9FtJgRV69lhUMMMm_sfmJ0Q02gMB6_eFsiB4XNCcV0w
+###
+
+# #  Добавить в друзья
+# POST /fit-friends/users/add/1 HTTP/1.1
+# Host: localhost:3333
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkZpbGlkb3IgWmVsZW5peSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjc5NDI0MDkxLCJleHAiOjE2Nzk0MjQ5OTF9.RiaXVZCIRIf_tp2b8UxwOYi3aQB5_zCkkNp_khedJ8o
+# ###
+
+#  Удалить из друзей
+POST /fit-friends/users/remove/1 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckB1c2VyMi5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjgxNzUyOTU5LCJleHAiOjE2ODE3NTM4NTl9.1fm-_-r9yyoRKKTqHCO3avyOD4DCAkl-ypsgW1cKdMw
+###
+
+#  Получить список друзей
+# ?limit=50&page=0&sortType=date&sortDirection=desc
+GET /fit-friends/users/user/friends?limit=50&page=0&sortType=date&sortDirection=desc HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODIzNTUxMzksImV4cCI6MTY4MjM1NjAzOX0.quV6NfwYiBwXbts9nRWi6qZmcGmqbrduYjyUOg7kkIo
+###
+
+#  Подписаться на тренера (получение уведомлений о новых тренировках)
+POST  /fit-friends/users/subscribe/3/true HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODIzNTUxMzksImV4cCI6MTY4MjM1NjAzOX0.quV6NfwYiBwXbts9nRWi6qZmcGmqbrduYjyUOg7kkIo
+###
+
+#  Отписаться от тренера
+POST  /fit-friends/users/subscribe/3/false HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODIzNTUxMzksImV4cCI6MTY4MjM1NjAzOX0.quV6NfwYiBwXbts9nRWi6qZmcGmqbrduYjyUOg7kkIo
+###
