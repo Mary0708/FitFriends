@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fit-friends/config/config-users": ["libs/config/config-users/src/index.ts"],
+      "@fit-friends/models/models-fit": ["libs/models/models-fit/src/index.ts"],
+      "@fit-friends/shared/app-types": ["libs/shared/app-types/src/index.ts"],
+      "@fit-friends/utils/util-core": ["libs/utils/util-core/src/index.ts"],
+      "@fit-friends/utils/util-types": ["libs/utils/util-types/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
