@@ -1,8 +1,8 @@
 import { ApiProperty, getSchemaPath } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import { IsDateString, IsEmail, IsEnum, IsNotEmptyObject, Matches, MaxLength, MinLength, ValidateNested } from 'class-validator';
-import { ValidityMessage as VM } from '../../../libs/utils/util-types/src';
-import { Features, Location, LocationType, TrainingStyle, TrainingStyleType, UserGender, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '../../../libs/shared/app-types/src';
+import { ValidityMessage as VM } from '@fit-friends/utils/util-types';
+import { Features, Location, LocationType, TrainingStyle, TrainingStyleType, UserGender, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '@fit-friends/shared/app-types';
 import { CoachFeaturesDto, FeaturesDto, UserFeaturesDto } from './user-features.dto';
 import { UserValidation as UV } from '../user/user.constant';
 

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, MaxLength } from 'class-validator';
-import { ValidityMessage as VM } from '../../../libs/utils/util-types/src';
+import { ValidityMessage as VM } from '@fit-friends/utils/util-types';
 import { UserValidation as UV } from '../user/user.constant';
 
 export class LoginUserDto {

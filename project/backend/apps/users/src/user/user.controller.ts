@@ -4,8 +4,8 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { fillObject } from '../../../libs/utils/util-core/src';
-import { RefreshTokenPayload, TokenPayload } from '../../../libs/shared/app-types/src';
+import { fillObject } from '@fit-friends/utils/util-core';
+import { RefreshTokenPayload, RequestWithTokenPayload, TokenPayload } from '@fit-friends/shared/app-types';
 import { UserService } from './user.service';
 import { UserMessages } from './user.constant';
 import { UserRdo } from '../rdo/user.rdo.js';
