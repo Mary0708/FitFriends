@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RequestWithUser } from '@fit-friends/shared-types';
+import { RequestWithUser } from '@fit-friends/shared/app-types';
 
 @Injectable()
 export class JwtAccessStrategy extends PassportStrategy(Strategy) {

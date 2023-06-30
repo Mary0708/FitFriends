@@ -20,6 +20,14 @@ export enum UserValidation {
     NameMaxLength = 15,
     PasswordMinLength = 6,
     PasswordMaxLength = 12,
+    CertificateTitleMinLength = 5,
+    CertificateTitleMaxLength = 100,
+    CaloriesLossMinValue = 1000,
+    CaloriesLossMaxValue = 5000,
+    CaloriesLossPerDayMinValue = 1000,
+    CaloriesLossPerDayMaxValue = 5000,
+    MeritsMinLength = 10,
+    MeritsMaxLength = 140,
 }
 
 export const UserQuery = {

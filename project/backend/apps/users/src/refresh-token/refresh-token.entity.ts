@@ -1,5 +1,5 @@
-import { Token } from '../../libs/shared/app-types/src';
-import { Entity } from '../../libs/utils/util-types/src';
+import { Token } from '@fit-friends/shared/app-types';
+import { Entity } from '@fit-friends/utils/util-types';
 
 export class RefreshTokenEntity implements Entity<RefreshTokenEntity, Token>, Token {
   public id: number;

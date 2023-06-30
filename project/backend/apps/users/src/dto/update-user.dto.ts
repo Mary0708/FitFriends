@@ -1,7 +1,7 @@
-import { Features, UserRole, UserRoleType } from '@fit-friends/shared-types';
+import { Features, UserRole, UserRoleType } from '@fit-friends/shared/app-types';
 import { ApiProperty, OmitType, PartialType, getSchemaPath } from '@nestjs/swagger';
 import { IsEnum, IsNotEmptyObject, IsOptional, ValidateNested } from 'class-validator';
-import { ValidityMessage as VM } from '@fit-friends/core';
+import { ValidityMessage as VM } from '@fit-friends/utils/util-types';
 import { CreateUserDto } from './create-user.dto';
 import { Transform, Type } from 'class-transformer';
 import { CoachFeaturesDto, FeaturesDto, UserFeaturesDto } from './user-features.dto';

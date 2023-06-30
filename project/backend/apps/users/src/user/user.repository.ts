@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { User, UserRole, UserFeatures, CoachFeatures } from '../../../libs/shared/app-types/src/index';
-import { CRUDRepositoryInterface } from '../../../libs/utils/util-types/src/index';
+import { User, UserRole, UserFeatures, CoachFeatures } from '@fit-friends/shared/app-types';
+import { CRUDRepositoryInterface } from '@fit-friends/utils/util-types';
 import { UserEntity } from './user.entity';
 import { UserQuery } from '../query/user.query';
 import { UserSort, UserSortField, UserQuery as UQ } from './user.constant';
-import { PrismaService } from '../../prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UserRepository implements CRUDRepositoryInterface<UserEntity, number, User> {
@@ -130,5 +130,57 @@ export class UserRepository implements CRUDRepositoryInterface<UserEntity, numbe
     await this.prisma.user.delete({
       where: { id },
     })
+  }
+
+  public async addFriend(id: number, friendId: number): Promise<User> {
+    const [user] = await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id },
+        data: { friends: { connect: [{ id: friendId }] } },
+      }),
+      this.prisma.user.update({
+        where: { id: friendId },
+        data: { friends: { connect: [{ id }] } },
+      })
+    ]);
+
+    return user;
+  }
+
+  public async removeFriend(id: number, friendId: number): Promise<User> {
+    const [user] = await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id },
+        data: { friends: { disconnect: [{ id: friendId }] } },
+      }),
+      this.prisma.user.update({
+        where: { id: friendId },
+        data: { friends: { disconnect: [{ id }] } },
+      })
+    ]);
+
+    return user;
+  }
+
+  public async changeSubscription(id: number, coachId: number, isFollow: boolean): Promise<User> {
+    const action = isFollow ? 'connect' : 'disconnect';
+    const [user] = await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id },
+        data: { subscriptions: { [action]: [{ id: coachId }] } },
+      }),
+      this.prisma.user.update({
+        where: { id: coachId },
+        data: { subscriptions: { [action]: [{ id }] } },
+      })
+    ]);
+
+    return user;
+  }
+
+  public async findSubscribed(id: number): Promise<User[]> {
+    return await this.prisma.user.findMany({
+      where: { subscriptions: { some: { id } } },
+    });
   }
 }

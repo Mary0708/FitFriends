@@ -5,8 +5,13 @@ export * from './lib/user-role.enum'
 export * from './lib/user-level.enum'
 export * from './lib/user-location.enum'
 export * from './lib/training-style.enum'
+export * from './lib/user-training-time.enum'
+export * from './lib/request-with-user.type';
+export * from './lib/request-status.enum'
+export * from './lib/request-category.enum'
 
 //tokens
 export * from './lib/token.type'
+export * from './lib/request-with-token-payload.interface'
 export * from './lib/token-payload.type'
 export * from './lib/refresh-token-payload.interface';
