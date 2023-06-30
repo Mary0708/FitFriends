@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RefreshTokenRepository } from './refresh-token.repository';
 import { RefreshTokenEntity } from './refresh-token.entity';
-import { RefreshTokenPayload } from '../../libs/shared/app-types/src';
+import { RefreshTokenPayload } from '@fit-friends/shared/app-types';
 import dayjs from 'dayjs';
 import { ManipulateType } from 'dayjs';
 

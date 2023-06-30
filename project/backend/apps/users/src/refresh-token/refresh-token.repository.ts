@@ -1,4 +1,4 @@
-import { Token } from '../../libs/shared/app-types/src';
+import { Token } from '@fit-friends/shared/app-types';
 import { Injectable } from '@nestjs/common/decorators/core/injectable.decorator';
 import { RefreshTokenEntity } from './refresh-token.entity';
 import { PrismaService } from '../prisma/prisma.service';

@@ -1,5 +1,5 @@
 export type Token = {
-  id: number;
+  id?: number;
   userId: number;
   tokenId: string;
   expiresIn: Date;

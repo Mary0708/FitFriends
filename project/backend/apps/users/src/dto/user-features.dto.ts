@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, Max, MaxLength, Min, MinLength } from 'class-validator';
-import { TrainingTime, TrainingTimeType } from '@fit-friends/shared-types';
-import { IsBooleanProp, ValidityMessage as VM } from '@fit-friends/core';
-import { UserValidation as UV } from '../user.constant';
+import { TrainingTime, TrainingTimeType } from '@fit-friends/shared/app-types';
+import { ValidityMessage as VM } from '@fit-friends/utils/util-types';
+import { IsBooleanProp } from '@fit-friends/utils/util-core';
+import { UserValidation as UV } from '../user/user.constant';
 
 export abstract class FeaturesDto { }
 

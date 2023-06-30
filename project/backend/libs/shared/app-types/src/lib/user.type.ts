@@ -6,7 +6,7 @@ import { TrainingStyleType } from './training-style.enum';
 import { Features } from './user-features.type';
 
 export type User = {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   avatar: string;
