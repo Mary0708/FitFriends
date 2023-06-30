@@ -9,6 +9,9 @@ export * from './lib/user-training-time.enum'
 export * from './lib/request-with-user.type';
 export * from './lib/request-status.enum'
 export * from './lib/request-category.enum'
+export * from './lib/food-diary.type'
+export * from './lib/meal-time.enum'
+export * from './lib/training.type'
 
 //tokens
 export * from './lib/token.type'
