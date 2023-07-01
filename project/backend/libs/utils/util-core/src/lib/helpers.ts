@@ -18,6 +18,10 @@ export function getRabbitMQConnectionString({user, password, host, port}): strin
   return `amqp://${user}:${password}@${host}:${port}`;
 }
 
+export function getFriendRemove(userName: string) {
+  return `The user ${userName} has removed you from the friends list`;
+}
+
 export function getFileName(file: Express.Multer.File) {
   const name = file.originalname.split('.')[0];
   const fileExtName = extname(file.originalname);

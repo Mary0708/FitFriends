@@ -10,11 +10,15 @@ import { RefreshTokenModule } from '../refresh-token/refresh-token.module';
 import { JwtAccessStrategy } from '../strategies/jwt-access.strategy.js';
 import { LocalStrategy } from '../strategies/local.strategy';
 import { JwtRefreshStrategy } from '../strategies/jwt-refresh.strategy';
+import { MailModule } from '../mail/mail.module';
+import { NotifyModule } from '../notify/notify.module';
 
 @Module({
   imports: [
     PassportModule,
     RefreshTokenModule,
+    MailModule,
+    NotifyModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

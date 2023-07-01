@@ -12,6 +12,7 @@ export * from './lib/request-category.enum'
 export * from './lib/food-diary.type'
 export * from './lib/meal-time.enum'
 export * from './lib/training.type'
+export * from './lib/notification.type'
 
 //tokens
 export * from './lib/token.type'
