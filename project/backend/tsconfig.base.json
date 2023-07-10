@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-        "types": ["node"],
+    "types": ["node"],
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,11 +16,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fit-friends/config/config-users": ["libs/config/config-users/src/index.ts"],
+      "@fit-friends/config/config-notify": [
+        "libs/config/config-notify/src/index.ts"
+      ],
+      "@fit-friends/config/config-training": [
+        "libs/config/config-training/src/index.ts"
+      ],
+      "@fit-friends/config/config-users": [
+        "libs/config/config-users/src/index.ts"
+      ],
       "@fit-friends/models/models-fit": ["libs/models/models-fit/src/index.ts"],
       "@fit-friends/shared/app-types": ["libs/shared/app-types/src/index.ts"],
       "@fit-friends/utils/util-core": ["libs/utils/util-core/src/index.ts"],
-      "@fit-friends/utils/util-types": ["libs/utils/util-types/src/index.ts"]
+      "@fit-friends/utils/util-types": ["libs/utils/util-types/src/index.ts"],
+      "@project/shared/shared-pipes": ["libs/shared/shared-pipes/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

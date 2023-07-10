@@ -13,10 +13,8 @@ import { UserExistsException, UserFriendIdException, UserNotFoundIdException, Us
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserQuery } from '../query/user.query';
 import { resolve } from 'path';
-import { getFileName, isFolderExistsOrCreate } from '@fit-friends/utils/util-core';
+import { getFileName, getFriendRemove, isFolderExistsOrCreate } from '@fit-friends/utils/util-core';
 import { writeFileSync, existsSync, unlinkSync } from 'fs';
-import { MailService } from '../mail/mail.service';
-import { NotifyService } from '../notify/notify.service';
 
 @Injectable()
 export class UserService {
@@ -26,8 +24,6 @@ export class UserService {
     private readonly jwtService: JwtService,
     private readonly refreshTokenService: RefreshTokenService,
     private readonly logger: Logger,
-    private readonly mail: MailService,
-    private readonly notifyService: NotifyService,
   ) { }
 
   private async checkUserIdMatch(userFirstId: number, userSecondId: number): Promise<User[]> {
@@ -133,7 +129,7 @@ export class UserService {
     return this.userRepository.addFriend(userId, friendId);
   }
 
-  async removeFriend(userId: number, friendId: number, userName: string): Promise<void> {
+  async removeFriend(userId: number, friendId: number): Promise<void> {
     await this.checkUserIdMatch(userId, friendId);
     await this.userRepository.removeFriend(userId, friendId);
   }
@@ -249,10 +245,4 @@ export class UserService {
     );
   }
 
-  public async sendEmailToSubscribedUsers(coachId: number, training: Training): Promise<void> {
-    const users = await this.userRepository.findSubscribed(coachId);
-    for (const user of users) {
-      this.mail.sendMailNewTraining(user, training);
-    }
-  }
 }

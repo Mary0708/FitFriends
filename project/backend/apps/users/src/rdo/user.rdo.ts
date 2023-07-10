@@ -1,7 +1,7 @@
 import { Expose, Transform, Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Location, LocationType, TrainingStyle, TrainingStyleType, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '@fit-friends/shared-types';
-import { UserGender } from '@prisma/client';
+import { Location, LocationType, TrainingStyle, TrainingStyleType, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '@fit-friends/shared/app-types';
+import { UserGender } from '@fit-friends/shared/app-types';
 
 export class UserRdo {
   @ApiProperty({

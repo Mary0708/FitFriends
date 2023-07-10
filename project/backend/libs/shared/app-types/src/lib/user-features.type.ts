@@ -1,6 +1,7 @@
+import { TrainingTimeType } from './training-time.enum';
 
 export type UserFeatures = {
-  trainingTime: string; //поменять
+  trainingTime: TrainingTimeType;
   caloriesLoss: number;
   caloriesLossPerDay: number;
   isReadyForTraining: boolean;

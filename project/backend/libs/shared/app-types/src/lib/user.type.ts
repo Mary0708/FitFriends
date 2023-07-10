@@ -1,7 +1,7 @@
 import { UserLevelType } from './user-level.enum';
-import { LocationType } from './user-location.enum';
+import { LocationType } from './location.enum';
 import { UserRoleType } from './user-role.enum';
-import { UserGenderType } from './user-sex.enum';
+import { UserGenderType } from './user-gender.enum';
 import { TrainingStyleType } from './training-style.enum';
 import { Features } from './user-features.type';
 

@@ -10,7 +10,7 @@ export abstract class FeaturesDto { }
 export class UserFeaturesDto extends FeaturesDto {
   @ApiProperty({
     description: 'Desired training time',
-    example: TrainingTime.Max30,
+    example: TrainingTime.Time30,
     type: () => String,
     enum: TrainingTime,
     required: true,

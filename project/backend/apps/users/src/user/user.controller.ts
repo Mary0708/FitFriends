@@ -10,16 +10,13 @@ import { UserService } from './user.service';
 import { UserMessages } from './user.constant';
 import { UserRdo } from '../rdo/user.rdo.js';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { JwtRefreshGuard } from '../guards/jwt-refresh.guard';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { UpdateUserDto } from '../dto/update-user.dto.js';
-import { LocalAuthGuard } from '../guards/local-auth.guard.js';
 import { AvatarValidationPipe } from '../pipes/avatar-upload-verify.pipe.js';
 import { CertificateValidationPipe } from '../pipes/certificate-upload-verify.pipe.js';
 import { ApiIndexQuery } from '../query/user.api-query.decorator.js';
 import { UserQuery } from '../query/user.query.js';
-import { RolesGuard } from '@fit-friends/utils/util-types';
+import { JwtAuthGuard, JwtRefreshGuard, LocalAuthGuard, RolesGuard } from '@fit-friends/utils/util-types';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { UpdateUserDto } from '../dto/update-user.dto.js';
 
 @ApiTags('users')
 @Controller('users')
@@ -117,7 +114,7 @@ export class UserController {
   @ApiResponse({ status: HttpStatus.OK, description: 'Resource to remove from friends' })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
   async remove(@Param('id') id: number, @Req() { user }: RequestWithTokenPayload<TokenPayload>, @Res() res: Response) {
-    await this.userService.removeFriend(user.sub, id, user.name);
+    await this.userService.removeFriend(user.sub, id);
     return res.status(HttpStatus.OK).send();
   }
 
