@@ -100,7 +100,7 @@ Content-Type: application/json
   "name": "Filidor Zeleniy",
   "role" : "User",
   "features" : {
-    "trainingTime" : "Max50"
+    "trainingTime" : "45"
   }
 }
 ###

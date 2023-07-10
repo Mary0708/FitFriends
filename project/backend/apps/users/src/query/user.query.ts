@@ -1,8 +1,8 @@
 import { Transform } from 'class-transformer';
 import { IsEnum, IsIn, IsNumber, IsOptional } from 'class-validator';
-import { ValidityMessage as VM } from '../../../libs/utils/util-types/src';
-import { transformToMax } from '../../../libs/utils/util-core/src';
 import { UserQuery as UQ, UserSort } from '../user/user.constant';
+import { transformToMax } from '@fit-friends/utils/util-core';
+import { ValidityMessage as VM} from '@fit-friends/utils/util-types';
 
 export class UserQuery {
   @Transform(({ value }) => transformToMax(value, UQ.USER_QUERY_MIN, UQ.USER_QUERY_MAX))
