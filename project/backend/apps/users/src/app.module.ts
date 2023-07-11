@@ -6,7 +6,6 @@ import { RefreshTokenModule } from './refresh-token/refresh-token.module';
 import { UsersModule } from './user/user.module';
 import { NotifyUserModel } from './user-notify/notify-user.model';
 import { UserBalanceModule } from './user-balance/user-balance.module.js';
-import { UserDiaryModule } from './user-diaries/user-diary.module.js';
 
 @Module({
   imports: [
@@ -15,7 +14,6 @@ import { UserDiaryModule } from './user-diaries/user-diary.module.js';
     RefreshTokenModule,
     NotifyUserModel,
     UserBalanceModule,
-    UserDiaryModule,
     MongooseModule.forRootAsync(
       getMongooseOptions('db')
     )

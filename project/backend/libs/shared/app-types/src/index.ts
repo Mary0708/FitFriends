@@ -9,8 +9,6 @@ export * from './lib/training-time.enum'
 export * from './lib/request-with-user.type';
 export * from './lib/request-status.enum'
 export * from './lib/request-category.enum'
-export * from './lib/food-diary.type'
-export * from './lib/meal-time.enum'
 export * from './lib/training.type'
 export * from './lib/notification.type'
 export * from './lib/notify-message.enum'
@@ -29,7 +27,6 @@ export * from './lib/gym.type'
 export * from './lib/order-category.enum'
 export * from './lib/comment.interface'
 export * from './lib/user-balance.type'
-export * from './lib/training-diary.type'
 
 //tokens
 export * from './lib/token.type'
