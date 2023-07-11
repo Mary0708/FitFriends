@@ -18,7 +18,7 @@ import { CommentsModule } from './comments/comments.module.js';
     NotifyUserModule,
     TrainingRequestModule,
     GymsModule,
-    CommentsModule
+    CommentsModule,
    ],
   controllers: [],
   providers: [],

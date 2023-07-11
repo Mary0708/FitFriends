@@ -32,7 +32,7 @@ export class TrainingRequestRdo {
     description: 'Type request'
   })
   @Expose()
-  public RequestCategoryType: string;
+  public category: string;
 
   @ApiProperty({
     description: 'Date update'

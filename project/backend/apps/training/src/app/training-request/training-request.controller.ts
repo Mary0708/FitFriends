@@ -27,8 +27,8 @@ export class TrainingRequestController {
     description: 'Create request'
   })
   @Post('create')
-  public async create(@Body() dto: CreateRequestDto) {
-    const newTrainingRequests = await this.requestService.create(dto);
+  public async create(@Body() dto: CreateRequestDto, initiatorId: number) {
+    const newTrainingRequests = await this.requestService.create(dto, initiatorId);
     await this.notifyUserService.trainingNotifyUser(newTrainingRequests)
     return fillObject(TrainingRequestRdo, newTrainingRequests);
   }

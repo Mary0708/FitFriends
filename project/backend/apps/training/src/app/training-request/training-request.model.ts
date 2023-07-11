@@ -30,7 +30,7 @@ export class TrainingRequestModel extends Document implements TrainingRequest {
     type: String,
     enum: RequestCategory
   })
-  public requestCategory: RequestCategoryType;
+  public category: RequestCategoryType;
 
   @Prop({
   })

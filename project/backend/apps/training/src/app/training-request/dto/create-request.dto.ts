@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { RequestStatus, RequestStatusType, RequestCategoryType } from "@fit-friends/shared/app-types";
+import { RequestStatus, RequestStatusType, RequestCategoryType, RequestCategory } from "@fit-friends/shared/app-types";
 
 export class CreateRequestDto {
 
@@ -16,7 +16,7 @@ export class CreateRequestDto {
   @ApiProperty({
     description: 'Type request',
     enum: RequestCategory, enumName: 'RequestCategory'})
-  public requestCategory: RequestCategoryType;
+  public category: RequestCategoryType;
 
   @ApiProperty({
     description: 'Request status',
