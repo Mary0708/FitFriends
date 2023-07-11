@@ -4,7 +4,6 @@ import { IsEnum, IsInt, Max, Min } from 'class-validator';
 import { TrainingCount, ValidityMessage as VM } from '@fit-friends/utils/util-types';
 
 export class CreateOrderDto {
-
   @ApiProperty({
     description: 'User Id'
   })

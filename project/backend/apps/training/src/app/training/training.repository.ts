@@ -1,30 +1,29 @@
-import { CRUDRepositoryInterface } from '@fit-friends/utils/util-types';
+import { CRUDRepositoryInterface, PrismaService } from '@fit-friends/utils/util-types';
 import { Injectable } from '@nestjs/common';
 import { TrainingEntity } from './training.entity';
 import { SomeObject, Training } from '@fit-friends/shared/app-types';
-import { TrainingModel } from './training.model';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
 import { TrainingCatalogQuery } from './query/training-catalog.query';
 import { TrainingQuery } from './query/training.query';
 
 @Injectable()
 export class TrainingRepository implements CRUDRepositoryInterface<TrainingEntity, number, Training> {
-  constructor(
-    @InjectModel(TrainingModel.name) private readonly trainingModel: Model<TrainingModel>) {
-  }
+  constructor(private readonly prisma: PrismaService) { }
 
   public async create(item: TrainingEntity): Promise<Training> {
-    const newTraining = new this.trainingModel(item);
-    return newTraining.save();
+    const entityData = item.toObject();
+    return this.prisma.training.create({
+      data: {
+        ...entityData,
+      }
+    });
   }
 
   public async destroy(id: number): Promise<void> {
-    this.trainingModel.deleteOne({_id: id});
+    this.prisma.training.deleteOne({_id: id});
   }
 
   public async findById(id: number): Promise<Training | null> {
-    return this.trainingModel
+    return this.prisma.training
       .findOne({_id: id})
       .exec();
   }
@@ -51,7 +50,7 @@ export class TrainingRepository implements CRUDRepositoryInterface<TrainingEntit
                         }
       if (query.trainingTime) {objFiltr.trainingTime = { "$in": trainingTime };}
 
-    return this.trainingModel
+    return this.prisma.training
     .find({...objFiltr, coachId: coachId})
     .skip(pageNum * limit)
     .limit( limit )
@@ -85,7 +84,7 @@ export class TrainingRepository implements CRUDRepositoryInterface<TrainingEntit
       if (query.sortPrice) {objSort.sortPrice =  sortPrice}
 
 
-    return this.trainingModel
+    return this.prisma.training
     .find({...objFiltr})
     .skip(pageNum * limit)
     .limit( limit )
@@ -93,14 +92,14 @@ export class TrainingRepository implements CRUDRepositoryInterface<TrainingEntit
   }
 
   public async update(id: number, item: TrainingEntity): Promise<Training> {
-    return this.trainingModel
+    return this.prisma.training
       .findByIdAndUpdate(id, item.toObject(), {new: true})
       .exec();
   }
 
 
   public async findTrainingAfterDate(date: Date, coaches: [string]): Promise<Training[]> {
-    const training = await this.trainingModel
+    const training = await this.prisma.training
     .find({createdAt: {$gte: date},
           coachId: { $in: coaches }})
     .exec();
@@ -110,19 +109,19 @@ export class TrainingRepository implements CRUDRepositoryInterface<TrainingEntit
 
 
   public async updateRating(id: number, newRating: number): Promise<Training> {
-    return this.trainingModel
+    return this.prisma.training
       .findByIdAndUpdate(id, {rating: newRating}, {new: true})
       .exec();
   }
 
-
   public async updateImg(id: number, fileId: number): Promise<Training> {
-    return this.trainingModel
+    return this.prisma.training
       .findByIdAndUpdate(id, {backgroundImage: fileId}, {new: true})
       .exec();
   }
+
   public async updateVideo(id: number, fileId: string): Promise<Training> {
-    return this.trainingModel
+    return this.prisma.training
       .findByIdAndUpdate(id, {video: fileId}, {new: true})
       .exec();
   }

@@ -1,25 +1,37 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { TrainingRepository } from './training.repository';
-import { TRAINING_NOT_FOUND } from './training.constant';
 import { TrainingEntity } from './training.entity';
 import { CreateTrainingDTO } from './dto/create-training.dto';
 import { EditTrainingDTO } from './dto/edit-training.dto';
 import { TrainingCatalogQuery } from './query/training-catalog.query';
 import { TrainingQuery } from './query/training.query';
 import { Training } from '@fit-friends/shared/app-types';
-import { ConfigService } from '@nestjs/config';
-import { TrainingNotFoundIdException, TrainingsNotFoundException } from '@fit-friends/utils/util-core';
+import { TrainingNotFoundIdException, TrainingNotOwnerIdException, TrainingsNotFoundException, UserNotFoundIdException } from '@fit-friends/utils/util-core';
+import { UserService } from 'apps/users/src/user/user.service';
 
 @Injectable()
 export class TrainingService {
   constructor(
+    private readonly userService: UserService,
     private readonly trainingRepository: TrainingRepository,
-    private readonly configService: ConfigService,
     private readonly logger: Logger,
+
   ) { }
+
+  private async checkTrainingOwner(id: number, coachId: number): Promise<Training> {
+    const user = await this.userService.getUserById(coachId);
+    const training = await this.getTrainingById(id);
+   
+    if (user.id !== training.coachId) {
+      throw new TrainingNotOwnerIdException(this.logger, id, coachId);
+    }
+
+    return training;
+  }
 
   async getTrainingById(id: number): Promise<Training> {
     const existTraining = await this.trainingRepository.findById(id);
+    
     if (!existTraining) {
       throw new TrainingNotFoundIdException(this.logger, id);
     }
@@ -27,14 +39,20 @@ export class TrainingService {
     return existTraining;
   }
 
-  public async create(dto: CreateTrainingDTO) {
+  public async create(dto: CreateTrainingDTO, coachId: number) {
+    const existCoach = await this.userService.getUserById(coachId);
+    
+    if (!existCoach) {
+      throw new UserNotFoundIdException(this.logger, coachId);
+    }
+
     const trainingEntity = new TrainingEntity({ ...dto, backgroundImage: ' ', video: ' ', rating: 0 });
     return this.trainingRepository.create(trainingEntity);
   }
 
-  public async update(id: number, dto: EditTrainingDTO) {
-    const existTraining = await this.trainingRepository.findById(id);
-    
+  public async update(id: number, dto: EditTrainingDTO, coachId: number) {
+    const existTraining = await this.checkTrainingOwner(id, coachId);
+
     if (!existTraining) {
       throw new TrainingsNotFoundException(this.logger)
     }
@@ -78,7 +96,7 @@ export class TrainingService {
     return existTraining;
   }
 
-  public async getListTraingAfterDate(date: Date, coaches: [string]) {
+  public async getListTrainingAfterDate(date: Date, coaches: [string]) {
     return this.trainingRepository.findTrainingAfterDate(date, coaches);
   }
 
@@ -100,9 +118,10 @@ export class TrainingService {
     return this.trainingRepository.updateVideo(trainingId, fileId);
   }
 
-  public async createTestData(training) {
-    const trainingEntity = new TrainingEntity({ ...training, backgroundImage: ' ', video: ' ' });
-    return this.trainingRepository.create(trainingEntity);
+  public async deleteTraining(orderId: number, userId: number) {
+    await this.checkTrainingOwner(orderId, userId);
+    return this.trainingRepository.destroy(orderId);
   }
 }
 
+ 

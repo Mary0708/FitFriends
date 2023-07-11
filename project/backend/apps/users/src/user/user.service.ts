@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
-import { User, RefreshTokenPayload, UserRole, Training } from '@fit-friends/shared/app-types';
+import { User, RefreshTokenPayload, UserRole } from '@fit-friends/shared/app-types';
 import { RefreshTokenService } from '../refresh-token/refresh-token.service';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
@@ -9,11 +9,10 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginUserDto } from '../dto/login-user.dto';
 import { UserMessages } from './user.constant';
 import { ConfigService } from '@nestjs/config';
-import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UserRoleException, UsersNotFoundException } from '@fit-friends/utils/util-types';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserQuery } from '../query/user.query';
 import { resolve } from 'path';
-import { getFileName, getFriendRemove, isFolderExistsOrCreate } from '@fit-friends/utils/util-core';
+import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UserRoleException, UsersNotFoundException, getFileName, isFolderExistsOrCreate } from '@fit-friends/utils/util-core';
 import { writeFileSync, existsSync, unlinkSync } from 'fs';
 
 @Injectable()

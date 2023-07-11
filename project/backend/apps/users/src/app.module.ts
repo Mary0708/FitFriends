@@ -5,6 +5,8 @@ import { PrismaModule } from '../../../libs/utils/util-types/src/lib/prisma/pris
 import { RefreshTokenModule } from './refresh-token/refresh-token.module';
 import { UsersModule } from './user/user.module';
 import { NotifyUserModel } from './user-notify/notify-user.model';
+import { UserBalanceModule } from './user-balance/user-balance.module.js';
+import { UserDiaryModule } from './user-diaries/user-diary.module.js';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { NotifyUserModel } from './user-notify/notify-user.model';
     PrismaModule,
     RefreshTokenModule,
     NotifyUserModel,
+    UserBalanceModule,
+    UserDiaryModule,
     MongooseModule.forRootAsync(
       getMongooseOptions('db')
     )

@@ -6,9 +6,10 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { TrainingOrdersQuery } from './query/training-orders.query';
 import { GymService } from '../gyms/gym.service';
 import { OrderCategory } from '@fit-friends/shared/app-types';
-import { TrainingService } from '../training/training.service.js';
+import { TrainingService } from '../training/training.service';
 import { OrderNotFoundIdException, OrdersNotFoundException, OrderIsDoneException } from '@fit-friends/utils/util-core';
 import { ORDER_TYPE } from '@fit-friends/utils/util-types';
+import { UserBalanceService } from 'apps/users/src/user-balance/user-balance.service';
 
 @Injectable()
 export class TrainingOrdersService {
@@ -17,12 +18,12 @@ export class TrainingOrdersService {
     private readonly trainingService: TrainingService,
     private readonly trainingRepository: TrainingRepository,
     private readonly gymService: GymService,
-    private readonly orderRepository: TrainingOrdersRepository,
     private readonly logger: Logger,
+    private readonly balanceService: UserBalanceService,
   ) { }
 
   public async getOrderById(orderId: number) {
-    const existOrder = await this.orderRepository.findById(orderId);
+    const existOrder = await this.ordersRepository.findById(orderId);
     if (!existOrder) {
       throw new OrderNotFoundIdException(this.logger, orderId);
     }
@@ -50,6 +51,8 @@ export class TrainingOrdersService {
       gymId = dto.trainingId;
     }
 
+    await this.balanceService.updateUserBalance(dto.category, dto.trainingId, userId, true);
+
     delete dto.trainingId;
 
     const newOrder = new TrainingOrdersEntity({
@@ -63,7 +66,7 @@ export class TrainingOrdersService {
       isDone: false
     });
 
-    return this.orderRepository.create(newOrder);
+    return this.ordersRepository.create(newOrder);
   }
 
   public async update(orderId: number) {

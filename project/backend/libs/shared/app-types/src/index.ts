@@ -28,6 +28,8 @@ export * from './lib/gym-feature.enum'
 export * from './lib/gym.type'
 export * from './lib/order-category.enum'
 export * from './lib/comment.interface'
+export * from './lib/user-balance.type'
+export * from './lib/training-diary.type'
 
 //tokens
 export * from './lib/token.type'
