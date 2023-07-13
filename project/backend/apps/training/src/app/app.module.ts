@@ -8,6 +8,7 @@ import { NotifyUserModule } from './notify-user/notify-user.module';
 import { TrainingRequestModule } from './training-request/training-request.module';
 import { GymsModule } from './gyms/gym.module.js';
 import { CommentsModule } from './comments/comments.module.js';
+import { TrainingCatalogQuery } from './training/query/training-catalog.query.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommentsModule } from './comments/comments.module.js';
     TrainingRequestModule,
     GymsModule,
     CommentsModule,
+    TrainingCatalogQuery
    ],
   controllers: [],
   providers: [],

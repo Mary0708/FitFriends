@@ -30,7 +30,7 @@ export class NotifyUserRepository implements CRUDRepositoryInterface<NotifyUserE
   }
 
 
-  public async findByUserId(userId: string): Promise<NotifyUser[]> {
+  public async findByUserId(userId: number): Promise<NotifyUser[]> {
     return this.notifyDateModel
      .find({userId})
      .sort({dateNotify: -1})

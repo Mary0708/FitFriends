@@ -34,7 +34,7 @@ export class UserNotifyRepository implements CRUDRepositoryInterface<UserNotifyE
       .exec();
   }
 
-  public async find(userId: string, initiatorId: string, text: NotifyMessage, dateNotify: Date): Promise<NotifyUser | null> {
+  public async find(userId: number, initiatorId: number, text: NotifyMessage, dateNotify: Date): Promise<NotifyUser | null> {
     return this.userNotifyModel
       .findOne({ userId, dateNotify, initiatorId, text })
       .exec()

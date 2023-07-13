@@ -4,7 +4,7 @@ import { NotifyTraining, TrainingForSend } from '@fit-friends/shared/app-types';
 export class NewTrainingEntity implements Entity<NewTrainingEntity, NotifyTraining>, NotifyTraining {
   public id: number;
   public training: TrainingForSend[];
-  public userId: string;
+  public userId: number;
   public email: string;
   public dateSend: string;
 

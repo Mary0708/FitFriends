@@ -14,13 +14,13 @@ export class TrainingRequestRdo {
     description: 'Initiator ID',
   })
   @Expose()
-  public initiatorId: string;
+  public initiatorId: number;
 
   @ApiProperty({
     description: 'User ID'
   })
   @Expose()
-  public userId: string;
+  public userId: number;
 
   @ApiProperty({
     description: 'Status request '

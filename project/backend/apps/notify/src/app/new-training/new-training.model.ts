@@ -8,7 +8,7 @@ import { TrainingForSend, NotifyTraining } from '@fit-friends/shared/app-types';
 })
 export class NewTrainingModel extends Document implements  NotifyTraining {
   @Prop()
-  public userId: string;
+  public userId: number;
 
   @Prop()
   public email: string;

@@ -4,14 +4,19 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -22,15 +27,34 @@
       "@fit-friends/config/config-training": [
         "libs/config/config-training/src/index.ts"
       ],
+      "@fit-friends/config/config-uploader": [
+        "libs/config/config-uploader/src/index.ts"
+      ],
       "@fit-friends/config/config-users": [
         "libs/config/config-users/src/index.ts"
       ],
-      "@fit-friends/models/models-fit": ["libs/models/models-fit/src/index.ts"],
-      "@fit-friends/shared/app-types": ["libs/shared/app-types/src/index.ts"],
-      "@fit-friends/utils/util-core": ["libs/utils/util-core/src/index.ts"],
-      "@fit-friends/utils/util-types": ["libs/utils/util-types/src/index.ts"],
-      "@project/shared/shared-pipes": ["libs/shared/shared-pipes/src/index.ts"]
+      "@fit-friends/models/models-fit": [
+        "libs/models/models-fit/src/index.ts"
+      ],
+      "@fit-friends/shared/app-types": [
+        "libs/shared/app-types/src/index.ts"
+      ],
+      "@fit-friends/utils/util-core": [
+        "libs/utils/util-core/src/index.ts"
+      ],
+      "@fit-friends/utils/util-types": [
+        "libs/utils/util-types/src/index.ts"
+      ],
+      "@fit-friends/shared/shared-pipes": [
+        "libs/shared/shared-pipes/src/index.ts"
+      ],
+      "@fit-friends/user/user-dto": [
+        "apps/users/src/dto/index.ts"
+      ],
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -7,7 +7,7 @@ export class CreateOrderDto {
   @ApiProperty({
     description: 'User Id'
   })
-  public userId: string;
+  public userId: number;
 
   @ApiProperty({
     description: 'Training Id'

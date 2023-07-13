@@ -2,7 +2,7 @@ import { Order, PaymentOption } from '@fit-friends/shared/app-types';
 
 export class TrainingOrdersEntity implements Order {
   public _id: number;
-  public userId: string;
+  public userId: number;
   public coachId: number;
   public orderType: string;
   public trainingId: number;

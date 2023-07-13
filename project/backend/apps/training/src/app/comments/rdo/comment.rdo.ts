@@ -13,7 +13,7 @@ export class CommentRdo {
     description: 'Author comment'
   })
   @Expose()
-  public userId: string;
+  public userId: number;
 
   @ApiProperty({
     description: 'The training ID'

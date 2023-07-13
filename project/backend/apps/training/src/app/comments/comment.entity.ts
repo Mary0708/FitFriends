@@ -2,7 +2,7 @@ import { Comment} from '@fit-friends/shared/app-types';
 
 export class CommentEntity implements Comment {
   public _id: string;
-  public userId: string;
+  public userId: number;
   public trainingId: number;
   public ratingTraining: number;
   public message: string;

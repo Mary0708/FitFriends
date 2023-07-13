@@ -27,6 +27,8 @@ export * from './lib/gym.type'
 export * from './lib/order-category.enum'
 export * from './lib/comment.interface'
 export * from './lib/user-balance.type'
+export * from './lib/file.interface'
+export * from './lib/user-subscription.interface'
 
 //tokens
 export * from './lib/token.type'

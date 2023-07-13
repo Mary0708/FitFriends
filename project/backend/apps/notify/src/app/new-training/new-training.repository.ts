@@ -34,7 +34,7 @@ export class NewTrainingRepository implements CRUDRepositoryInterface<NewTrainin
       .exec();
   }
 
-  public async findByUserId(userId: string, dateSend: string): Promise<NotifyTraining | null> {
+  public async findByUserId(userId: number, dateSend: string): Promise<NotifyTraining | null> {
     return this.newTrainingModel
       .findOne({ userId, dateSend })
       .exec()

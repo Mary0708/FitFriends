@@ -8,10 +8,10 @@ import { NotifyMessage, NotifyUser } from '@fit-friends/shared/app-types';
 })
 export class NotifyUserModel extends Document implements NotifyUser {
   @Prop()
-  public userId: string;
+  public userId: number;
 
   @Prop()
-  public initiatorId: string;
+  public initiatorId: number;
 
   @Prop({
     required: true,

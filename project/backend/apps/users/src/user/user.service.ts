@@ -145,15 +145,6 @@ export class UserService {
     return this.userRepository.destroy(userId);
   }
 
-  public async updateSubscription(userId: number, coachId: number, isFollow: boolean): Promise<User> {
-    const [, coach] = await this.checkUserIdMatch(userId, coachId);
-    if (coach.role !== UserRole.Coach) {
-      throw new UserRoleException(this.logger, coachId);
-    }
-
-    return this.userRepository.changeSubscription(userId, coachId, isFollow);
-  }
-
   public async updateUserAvatar(id: number, file: Express.Multer.File): Promise<User> {
     const existUser = await this.getUserById(id);
     const userAvatar = existUser?.avatar;

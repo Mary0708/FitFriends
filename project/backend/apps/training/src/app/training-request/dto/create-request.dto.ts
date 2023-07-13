@@ -6,12 +6,12 @@ export class CreateRequestDto {
   @ApiProperty({
     description: 'Initiator Id'
   })
-  public initiatorId: string;
+  public initiatorId: number;
 
   @ApiProperty({
     description: 'User Id'
   })
-  public userId: string;
+  public userId: number;
 
   @ApiProperty({
     description: 'Type request',

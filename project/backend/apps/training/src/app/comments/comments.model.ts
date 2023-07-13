@@ -11,7 +11,7 @@ export class CommentModel extends Document implements Comment  {
   @Prop({
     required: true,
   })
-  public userId: string;
+  public userId: number;
 
   @Prop({
     required: true,

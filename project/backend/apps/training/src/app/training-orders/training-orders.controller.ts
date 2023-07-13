@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Query} from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { fillObject } from '@fit-friends/utils/util-core';
-import { MongoidValidationPipe } from '@project/shared/shared-pipes';
+import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { TrainingOrderRdo } from './rdo/training-order.rdo';
 import { TrainingOrdersService } from './training-orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';

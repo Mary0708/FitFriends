@@ -110,7 +110,7 @@ export class TrainingOrdersService {
     return existOrder;
   }
 
-  public async showListByUser(userId: string, query: TrainingOrdersQuery) {
+  public async showListByUser(userId: number, query: TrainingOrdersQuery) {
     const existOrder = await this.ordersRepository.findByUserId(userId, query);
 
     if (!existOrder) {

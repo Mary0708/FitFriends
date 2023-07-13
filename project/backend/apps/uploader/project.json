@@ -1,53 +1,40 @@
 {
-  "name": "reviews",
+  "name": "uploader",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/reviews/src",
+  "sourceRoot": "apps/uploader/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "platform": "node",
-        "outputPath": "dist/apps/reviews",
-        "format": ["cjs"],
-        "bundle": false,
-        "main": "apps/reviews/src/main.ts",
-        "tsConfig": "apps/reviews/tsconfig.app.json",
-        "assets": ["apps/reviews/src/assets"],
-        "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/uploader",
+        "main": "apps/uploader/src/main.ts",
+        "tsConfig": "apps/uploader/tsconfig.app.json",
+        "assets": ["apps/uploader/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/uploader/webpack.config.js"
       },
       "configurations": {
         "development": {},
-        "production": {
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
-        }
+        "production": {}
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "reviews:build"
+        "buildTarget": "uploader:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "reviews:build:development"
+          "buildTarget": "uploader:build:development"
         },
         "production": {
-          "buildTarget": "reviews:build:production"
+          "buildTarget": "uploader:build:production"
         }
       }
     },
@@ -55,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/reviews/**/*.ts"]
+        "lintFilePatterns": ["apps/uploader/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/reviews/jest.config.ts",
+        "jestConfig": "apps/uploader/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

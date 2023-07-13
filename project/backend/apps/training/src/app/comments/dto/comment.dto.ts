@@ -21,5 +21,5 @@ export class CommentDto {
   @ApiProperty({
     description: 'Author comment'
   })
-  public userId: string;
+  public userId: number;
 }

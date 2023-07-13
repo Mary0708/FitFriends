@@ -11,7 +11,7 @@ export class TrainingOrdersModel extends Document implements Order  {
   @Prop({
     required: true,
   })
-  public userId: string;
+  public userId: number;
 
   @Prop({
     required: true,

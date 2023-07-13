@@ -3,12 +3,11 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles, fillObject } from '@fit-friends/utils/util-core';
 import { TrainingRequestService } from './training-request.service';
 import { TrainingRequestRdo } from './rdo/training-request.rdo';
-import { MongoidValidationPipe } from '@project/shared/shared-pipes';
+import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { NotifyUserService } from '../notify-user/notify-user.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UserRole } from '@fit-friends/shared/app-types';
 import { RolesGuard, JwtAuthGuard } from '@fit-friends/utils/util-types';
-
 
 @ApiTags('training-request')
 @Controller('request')

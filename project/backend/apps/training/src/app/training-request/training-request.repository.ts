@@ -1,16 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { RequestStatus, RequestStatusType, TrainingRequest} from '@fit-friends/shared/app-types';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
+import { RequestStatusType, TrainingRequest} from '@fit-friends/shared/app-types';
 import { TrainingRequestEntity } from './training-request.entity';
-import { TrainingRequestModel } from './training-request.model';
 import { RequestSort, RequestQuery as RQ, RequestSortField, CRUDRepositoryInterface, PrismaService } from '@fit-friends/utils/util-types'
 import { RequestQuery } from './query/request.query.js';
 
 @Injectable()
 export class TrainingRequestRepository implements CRUDRepositoryInterface<TrainingRequestEntity, number, TrainingRequest> {
   constructor(private readonly prisma: PrismaService) { }
-
 
   public async create(item: TrainingRequestEntity): Promise<TrainingRequest> {
     const newTrainingRequest = new this.prisma.request(item);
@@ -27,7 +23,7 @@ export class TrainingRequestRepository implements CRUDRepositoryInterface<Traini
       .exec();
   }
 
-  public async findId(initiatorId: string, userId: string): Promise<TrainingRequest | null> {
+  public async findId(initiatorId: number, userId: number): Promise<TrainingRequest | null> {
     return this.prisma.request
       .findOne({initiatorId: initiatorId, userId: userId})
       .exec();

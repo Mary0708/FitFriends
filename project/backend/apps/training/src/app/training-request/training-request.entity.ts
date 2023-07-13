@@ -2,8 +2,8 @@ import { TrainingRequest, RequestStatus, RequestCategoryType, RequestStatusType 
 
 export class TrainingRequestEntity implements TrainingRequest {
   public _id: number;
-  public initiatorId: string;
-  public userId: string;
+  public initiatorId: number;
+  public userId: number;
   public requestStatus: RequestStatusType;
   public category: RequestCategoryType;
   public dateUpd: Date;

@@ -3,8 +3,8 @@ import { RequestStatusType } from './request-status.enum';
 
 export interface TrainingRequest {
   _id?: number;
-  initiatorId: string;
-  userId: string;
+  initiatorId: number;
+  userId: number;
   requestStatus: RequestStatusType;
   category: RequestCategoryType;
   dateUpd?: Date;

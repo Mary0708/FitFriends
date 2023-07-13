@@ -3,14 +3,13 @@ import { NotifyUserRepository } from './notify-user.repository';
 import { NotifyMessage } from '@fit-friends/shared/app-types';
 import { NotifyUserEntity } from './notify-user.entity';
 
-
 @Injectable()
 export class NotifyUserService {
   constructor(
     private readonly notifyUserRepository: NotifyUserRepository,
   ) {}
 
-  public async create(userId: string, notifyUserId: string, notifyType: NotifyMessage ) {
+  public async create(userId: number, notifyUserId: number, notifyType: NotifyMessage ) {
     const currentDate = new Date();
     const item = {
       userId: notifyUserId,
@@ -23,7 +22,7 @@ export class NotifyUserService {
     return await this.notifyUserRepository.create(notifyUserEntity);
   }
 
-    public async getNotifyUsers(userId: string) {
+    public async getNotifyUsers(userId: number) {
     return this.notifyUserRepository.findByUserId(userId);
   }
 

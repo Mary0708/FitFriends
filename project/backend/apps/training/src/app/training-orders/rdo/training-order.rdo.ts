@@ -62,7 +62,7 @@ export class TrainingOrderRdo {
     description: 'Coach Id'
   })
   @Expose()
-  public coachId: string;
+  public coachId: number;
 
   @ApiProperty({
     description: 'The sign of a special offer'
@@ -86,7 +86,7 @@ export class TrainingOrderRdo {
     description: 'User Id'
   })
   @Expose()
-  public userId: string;
+  public userId: number;
 
   @ApiProperty({
     description: "Order category",

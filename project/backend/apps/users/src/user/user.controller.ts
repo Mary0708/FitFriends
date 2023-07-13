@@ -1,6 +1,6 @@
 import {
-    Body, Controller, HttpCode, HttpStatus, Patch, 
-    Post, Get, Res, Req, UseGuards, Delete, Param, Query, UploadedFile, UseInterceptors,
+  Body, Controller, HttpCode, HttpStatus, Patch,
+  Post, Get, Res, Req, UseGuards, Delete, Param, Query, UploadedFile, UseInterceptors,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ApiBearerAuth, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -21,62 +21,62 @@ import { UpdateUserDto } from '../dto/update-user.dto.js';
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-    constructor(
-        private readonly userService: UserService,
-    ) { }
+  constructor(
+    private readonly userService: UserService,
+  ) { }
 
-    @Post('register')
-    @HttpCode(HttpStatus.CREATED)
-    @ApiResponse({ status: HttpStatus.CREATED, description: 'Resource for user registration', type: UserRdo })
-    @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: UserMessages.ALREADY_EXISTS })
-    public async create(@Body() dto: CreateUserDto) {
-        const newUser = await this.userService.register(dto);
-        return fillObject(UserRdo, newUser);
-    }
+  @Post('register')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiResponse({ status: HttpStatus.CREATED, description: 'Resource for user registration', type: UserRdo })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: UserMessages.ALREADY_EXISTS })
+  public async create(@Body() dto: CreateUserDto) {
+    const newUser = await this.userService.register(dto);
+    return fillObject(UserRdo, newUser);
+  }
 
-    @Post('refresh')
-    @UseGuards(JwtRefreshGuard)
-    @HttpCode(HttpStatus.OK)
-    @ApiResponse({ status: HttpStatus.OK, description: 'Get a new access/refresh tokens', type: TokenPayload })
-    @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: UserMessages.INVALID_TOKEN })
-    async refresh(@Req() request: RequestWithTokenPayload<RefreshTokenPayload>) {
-        const { user: tokenPayload } = request;
-        return this.userService.loginUser({
-            name: tokenPayload.name,
-            role: tokenPayload.role,
-            email: tokenPayload.email,
-            id: tokenPayload.sub
-        }, tokenPayload.refreshTokenId);
-    }
+  @Post('refresh')
+  @UseGuards(JwtRefreshGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({ status: HttpStatus.OK, description: 'Get a new access/refresh tokens', type: TokenPayload })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: UserMessages.INVALID_TOKEN })
+  async refresh(@Req() request: RequestWithTokenPayload<RefreshTokenPayload>) {
+    const { user: tokenPayload } = request;
+    return this.userService.loginUser({
+      name: tokenPayload.name,
+      role: tokenPayload.role,
+      email: tokenPayload.email,
+      id: tokenPayload.sub
+    }, tokenPayload.refreshTokenId);
+  }
 
-    @Post('login')
-    @UseGuards(LocalAuthGuard)
-    @ApiResponse({ status: HttpStatus.OK, description: UserMessages.LOGIN, type: TokenPayload })
-    @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserMessages.WRONG_PASSWORD} or ${UserMessages.WRONG_LOGIN}` })
-    public async login(@Req() req: RequestWithUser) {
-      const { user } = req;
-      return this.userService.loginUser(user);
-    }
+  @Post('login')
+  @UseGuards(LocalAuthGuard)
+  @ApiResponse({ status: HttpStatus.OK, description: UserMessages.LOGIN, type: TokenPayload })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserMessages.WRONG_PASSWORD} or ${UserMessages.WRONG_LOGIN}` })
+  public async login(@Req() req: RequestWithUser) {
+    const { user } = req;
+    return this.userService.loginUser(user);
+  }
 
-    @Get('login')
-    @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth()
-    @ApiResponse({ status: HttpStatus.OK, description: UserMessages.LOGIN, type: TokenPayload })
-    @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: UserMessages.UNAUTHORIZED })
-    public async checkAuth(@Res() res: Response) {
-        return res.status(HttpStatus.OK).send({ message: UserMessages.AUTHORIZED });
-    }
+  @Get('login')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiResponse({ status: HttpStatus.OK, description: UserMessages.LOGIN, type: TokenPayload })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: UserMessages.UNAUTHORIZED })
+  public async checkAuth(@Res() res: Response) {
+    return res.status(HttpStatus.OK).send({ message: UserMessages.AUTHORIZED });
+  }
 
-    @Patch('/')
-    @UseGuards(JwtAuthGuard)
-    @ApiResponse({ status: HttpStatus.OK, description: UserMessages.UPDATE, type: UserRdo })
-    @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
-    public async update(@Req() { user }: RequestWithTokenPayload<TokenPayload>, @Body() dto: UpdateUserDto) {
-      const updatedUser = await this.userService.updateUser(user.sub, dto);
-      return fillObject(UserRdo, updatedUser);
-    }
+  @Patch('/')
+  @UseGuards(JwtAuthGuard)
+  @ApiResponse({ status: HttpStatus.OK, description: UserMessages.UPDATE, type: UserRdo })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
+  public async update(@Req() { user }: RequestWithTokenPayload<TokenPayload>, @Body() dto: UpdateUserDto) {
+    const updatedUser = await this.userService.updateUser(user.sub, dto);
+    return fillObject(UserRdo, updatedUser);
+  }
 
-    @Get('/')
+  @Get('/')
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @Roles(`${UserRole.User}`)
@@ -140,21 +140,7 @@ export class UserController {
     return res.status(HttpStatus.OK).send();
   }
 
-  @Post('subscribe/:coachId/:isFollow')
-  @UseGuards(RolesGuard)
-  @UseGuards(JwtAuthGuard)
-  @Roles(`${UserRole.User}`)
-  @HttpCode(HttpStatus.OK)
-  async subscribe(
-    @BooleanParamDecorator('isFollow') isFollow: boolean,
-    @Param('coachId') coachId: number,
-    @Req() { user }: RequestWithTokenPayload<TokenPayload>,
-    @Res() res: Response) {
-    await this.userService.updateSubscription(user.sub, coachId, isFollow);
-    return res.status(HttpStatus.OK).send();
-  }
-  
-    @Post('/avatar')
+  @Post('/avatar')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('avatar'))
   @ApiResponse({ status: HttpStatus.OK, description: 'Resource for setting user avatar', type: UserRdo })

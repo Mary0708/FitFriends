@@ -2,8 +2,8 @@ import { NotifyMessage, NotifyUser } from '@fit-friends/shared/app-types';
 
 export class NotifyUserEntity implements NotifyUser {
   public _id: number;
-  public userId: string;
-  public initiatorId: string;
+  public userId: number;
+  public initiatorId: number;
   public text: NotifyMessage;
   public dateNotify: Date;
 

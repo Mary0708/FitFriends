@@ -11,12 +11,12 @@ export class TrainingRequestModel extends Document implements TrainingRequest {
   @Prop({
     required: true,
   })
-  public initiatorId: string;
+  public initiatorId: number;
 
   @Prop({
     required: true,
   })
-  public userId: string;
+  public userId: number;
 
   @Prop({
     required: true,

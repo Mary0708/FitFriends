@@ -3,9 +3,9 @@ import { NotifyMessage, NotifyUser } from '@fit-friends/shared/app-types';
 
 export class UserNotifyEntity implements Entity<UserNotifyEntity, NotifyUser>, NotifyUser {
   public id: number;
-  public userId: string;
-  public initiatiorId: string;
-  public initiatiorName: string;
+  public userId: number;
+  public initiatorId: number;
+  public initiatorName: string;
   public email: string;
   public text: NotifyMessage;
   public dateNotify: Date;
@@ -16,8 +16,8 @@ export class UserNotifyEntity implements Entity<UserNotifyEntity, NotifyUser>, N
 
   public fillEntity(entity) {
     this.userId = entity.userId;
-    this.initiatiorId = entity.initiatiorId;
-    this.initiatiorName = entity.v;
+    this.initiatorId = entity.initiatorId;
+    this.initiatorName = entity.v;
     this.email = entity.email;
     this.text = entity.text;
     this.dateNotify = entity.dateNotify;

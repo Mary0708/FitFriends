@@ -6,7 +6,7 @@ import { Roles, fillObject } from '@fit-friends/utils/util-core';
 import { RabbitRPC } from '@golevelup/nestjs-rabbitmq';
 import { TrainingRdo } from './rdo/training.rdo';
 import { CreateTrainingDTO } from './dto/create-training.dto';
-import { MongoidValidationPipe } from '@project/shared/shared-pipes';
+import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { TrainingCatalogQuery } from './query/training-catalog.query.js';
 import { TrainingQuery } from './query/training.query.js';
 import { EditTrainingDTO } from './dto/edit-training.dto.js';

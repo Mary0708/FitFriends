@@ -104,7 +104,7 @@ export class TrainingOrdersRepository implements CRUDRepositoryInterface<Trainin
     .exec();
   }
 
-  public async findByUserId(userId: string, query: TrainingOrdersQuery): Promise<Order[]> {
+  public async findByUserId(userId: number, query: TrainingOrdersQuery): Promise<Order[]> {
     const {limit, sortCount, sortPrice,  page}= query;
     const pageNum = page? (page-1) : 0;
     const skip = pageNum*limit;

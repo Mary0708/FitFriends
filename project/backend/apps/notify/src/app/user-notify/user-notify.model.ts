@@ -8,13 +8,13 @@ import { NotifyUser, NotifyMessage } from '@fit-friends/shared/app-types';
 })
 export class UserNotifyModel extends Document implements  NotifyUser {
   @Prop()
-  public userId: string;
+  public userId: number;
 
   @Prop()
   public email: string;
 
   @Prop()
-  public initiatorId: string;
+  public initiatorId: number;
 
   @Prop()
   public initiatorName: string;
