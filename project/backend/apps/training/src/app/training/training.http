@@ -1,42 +1,103 @@
-# Создание тренировки
-POST http://localhost:3334/api/training/create HTTP/1.1
+#======================= Authorization ==================
+# Авторизоваться (coach)
+POST /fit-friends/users/login HTTP/1.1
+Host: localhost:3333
 Content-Type: application/json
 
 {
-  "title": "Тренировка йога",
-  "level": "любитель",
-  "trainingStyle": "йога",
-  "trainingTime": "10-30 мин",
-  "price": 2000,
-  "caloriesLoss": 3000,
-  "description": "йога просто супер",
-  "gender": "male",
-  "isSpecial": true,
-  "coachId": "649866f6dac052e861589f59"
+  "email": "user@coach.ru",
+  "password": "123456"
 }
 ###
-# Редактирование  тренировки
-POST http://localhost:3334/api/training/edit/649afd18e0be2c6e2c674fbe HTTP/1.1
+
+# Обновить авторизацию пользователя (ожидает refresh_token, выдает повую пару токенов)
+POST /fit-friends/users/refresh HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsInJlZnJlc2hUb2tlbklkIjoiN2FhZmIyY2QtM2Y2YS00YzNlLWIxYjUtNWE0NjE1NDRlNTk2IiwiaWF0IjoxNjgyMzU1NDQ2LCJleHAiOjE2ODI5NjAyNDZ9.q7_oENwHAU9WTAAQTYOirWcao0HrgDi1WEClc2wF9-g
+###
+
+#======================= Training ==================
+
+# Создать тренировку
+POST /fit-friends/training/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MjM1NTQ0NiwiZXhwIjoxNjgyMzU2MzQ2fQ.t9yZKb2qDfguQirZ10anSrn4bbYZc5TUrewwxaBLZDs
 Content-Type: application/json
 
 {
-  "level": "новичок"
+  "title": "title",
+  "level" : "Beginner",
+  "trainingStyle" : "Yoga",
+  "trainingTime" : "Time30",
+  "price" : 1000,
+  "caloriesLoss" : 1000,
+  "description" : "description",
+  "gender": "Male",
+  "isSpecial" : false
 }
 ###
-# Детальная информация о тренировке
-GET http://localhost:3334/api/training/649afd18e0be2c6e2c674fbe HTTP/1.1
-Content-Type: application/json
-###
 
-# Список тренировок тренера
-GET http://localhost:3334/api/training/show/list HTTP/1.1
+# Обновить тренировку
+PATCH /fit-friends/training/2 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MDAyNjgwOSwiZXhwIjoxNjgwMDI3NzA5fQ.0_GfhI6FQ2zB4KK6dRU4BTqZeWyaUqxKIc6KLiTy4mg
 Content-Type: application/json
 
 {
-  "coachId": "6497fd0eaaa5a02715264c9b"
+  "title": "title1",
+  "level" : "Beginner",
+  "trainingStyle" : "Yoga",
+  "trainingTime" : "Max30",
+  "price" : 2000,
+  "caloriesLoss" : 3000,
+  "description" : "description",
+  "gender": "Male",
+  "isSpecial" : true
 }
 ###
 
-# Каталог тренировок
-GET http://localhost:3334/api/training/show/catalog?trainingStyle=йога,бокс HTTP/1.1
+# Удалить тренировку
+DELETE /fit-friends/training/1 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MDAyNjgwOSwiZXhwIjoxNjgwMDI3NzA5fQ.0_GfhI6FQ2zB4KK6dRU4BTqZeWyaUqxKIc6KLiTy4mg
+###
+
+#  Загрузка видео тренировки
+POST /fit-friends/training/2/video/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MDExNjkxNywiZXhwIjoxNjgwMTE3ODE3fQ.XN6TVdoC4YRZmY2UOtNfBMRB_PuXDruuRhEYGIVR894
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="video"; filename="traffic.mp4"
+Content-Type: video/mp4
+
+< D:/загрузки/traffic.mp4
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+#  Получить видео тренировки
+GET /fit-friends/training/2/video/ HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MDExNjkxNywiZXhwIjoxNjgwMTE3ODE3fQ.XN6TVdoC4YRZmY2UOtNfBMRB_PuXDruuRhEYGIVR894
+###
+
+#  Получить список тренировок тренера (coach)
+# ?limit=50&page=0&sortType=date&sortDirection=desc&trainingTime=Max30&trainingStyle=Yoga
+GET /fit-friends/training?limit=50&page=0&sortType=date&sortDirection=desc&priceMin=1000&priceMax=5000&ratingMin=0&ratingMax=5&trainingTime=Max30&trainingStyle=Yoga HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoidXNlckBjb2FjaC5ydSIsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJDb2FjaCIsImlhdCI6MTY4MjM1MzgyNiwiZXhwIjoxNjgyMzU0NzI2fQ.y8u3xuqLWDlcQQKYcXaOvoz1ruVE-tARrR802OKZgB4
+###
+
+#  Получить каталог тренировок (users)
+# ?limit=50&page=0&sortType=date&sortDirection=desc&trainingTime=Max30&trainingStyle=Yoga
+GET /fit-friends/training/catalog?limit=50&page=0&sortType=date&sortDirection=desc&priceMin=1000&priceMax=5000&ratingMin=0&ratingMax=5&trainingTime=Max30&trainingStyle=Yoga HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODIzNTM2MzgsImV4cCI6MTY4MjM1NDUzOH0.UxNs_RiM5_JF8czAKcsXu9bZpIzTPmMtAo2uDCO7xcQ
+###
+
+#  Получить информацию о тренировке
+GET /fit-friends/training/1 HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODIzNTM2MzgsImV4cCI6MTY4MjM1NDUzOH0.UxNs_RiM5_JF8czAKcsXu9bZpIzTPmMtAo2uDCO7xcQ
 ###
