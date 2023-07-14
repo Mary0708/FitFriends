@@ -33,8 +33,8 @@
       "@fit-friends/config/config-users": [
         "libs/config/config-users/src/index.ts"
       ],
-      "@fit-friends/models/models-fit": [
-        "libs/models/models-fit/src/index.ts"
+      "@fit-friends/models/models-training": [
+        "libs/models/models-training/src/index.ts"
       ],
       "@fit-friends/shared/app-types": [
         "libs/shared/app-types/src/index.ts"
@@ -50,6 +50,12 @@
       ],
       "@fit-friends/user/user-dto": [
         "apps/users/src/dto/index.ts"
+      ],
+      "@fit-friends/training/training-dto": [
+        "apps/training/src/dto/index.ts"
+      ],
+      "@fit-friends/training/training-query": [
+        "apps/training/src/query/index.ts"
       ],
     }
   },

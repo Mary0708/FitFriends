@@ -8,13 +8,13 @@ Content-Type: application/json
   "email": "user@user1.ru",
   "password": "123456",
   "gender": "Male",
-  "dateBirth" : "2011-10-05T14:48:00.000Z",
+  "dateBirth" : "2000-01-11",
   "role" : "User",
   "location" : "Pionerskaya",
   "level" : "Beginner",
   "trainingStyle" : "Yoga",
   "features" : {
-    "trainingTime" : "Max30",
+    "trainingTime" : "Time30",
     "caloriesLoss" : 1000,
     "caloriesLossPerDay" : 1000,
     "isReadyForTraining" : true

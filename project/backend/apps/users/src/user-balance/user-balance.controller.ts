@@ -6,8 +6,8 @@ import { UserBalanceQuery } from './query/user-balance.query';
 import { UserBalanceRdo } from './rdo/user-balance.rdo';
 import { UpdateUserBalanceDto } from './dto/update-user-balance.dto';
 import { UserRole, RequestWithTokenPayload, TokenPayload } from '@fit-friends/shared/app-types';
-import { Roles, fillObject } from '@fit-friends/utils/util-core';
-import { RolesGuard, JwtAuthGuard } from '@fit-friends/utils/util-types';
+import { fillObject } from '@fit-friends/utils/util-core';
+import { RolesGuard, JwtAuthGuard, Roles } from '@fit-friends/utils/util-types';
 
 @ApiTags('user-balance')
 @Controller('user-balance')

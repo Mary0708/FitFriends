@@ -17,7 +17,7 @@ export type User = {
   location: LocationType;
   level: UserLevelType;
   trainingStyle: TrainingStyleType;
-  features: Features;
+  features?: Features;
   createdAt?: Date;
   updatedAt?: Date;
 }

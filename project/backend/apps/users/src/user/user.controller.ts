@@ -1,22 +1,19 @@
 import {
   Body, Controller, HttpCode, HttpStatus, Patch,
-  Post, Get, Res, Req, UseGuards, Delete, Param, Query, UploadedFile, UseInterceptors,
+  Post, Get, Res, Req, UseGuards, Delete, Param, Query,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ApiBearerAuth, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BooleanParamDecorator, Roles, fillObject } from '@fit-friends/utils/util-core';
+import { fillObject } from '@fit-friends/utils/util-core';
 import { RefreshTokenPayload, RequestWithTokenPayload, RequestWithUser, TokenPayload, UserRole } from '@fit-friends/shared/app-types';
 import { UserService } from './user.service';
 import { UserMessages } from './user.constant';
-import { UserRdo } from '../rdo/user.rdo.js';
+import { UserRdo } from '../rdo/user.rdo';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { AvatarValidationPipe } from '../pipes/avatar-upload-verify.pipe.js';
-import { CertificateValidationPipe } from '../pipes/certificate-upload-verify.pipe.js';
-import { ApiIndexQuery } from '../query/user.api-query.decorator.js';
-import { UserQuery } from '../query/user.query.js';
-import { JwtAuthGuard, JwtRefreshGuard, LocalAuthGuard, RolesGuard } from '@fit-friends/utils/util-types';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { UpdateUserDto } from '../dto/update-user.dto.js';
+import { ApiIndexQuery } from '../query/user.api-query.decorator';
+import { UserQuery } from '../query/user.query';
+import { JwtAuthGuard, JwtRefreshGuard, LocalAuthGuard, Roles, RolesGuard } from '@fit-friends/utils/util-types';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 @ApiTags('users')
 @Controller('users')
@@ -138,45 +135,5 @@ export class UserController {
   async destroy(@Req() { user }: RequestWithTokenPayload<TokenPayload>, @Res() res: Response) {
     await this.userService.deleteUser(user.sub);
     return res.status(HttpStatus.OK).send();
-  }
-
-  @Post('/avatar')
-  @UseGuards(JwtAuthGuard)
-  @UseInterceptors(FileInterceptor('avatar'))
-  @ApiResponse({ status: HttpStatus.OK, description: 'Resource for setting user avatar', type: UserRdo })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
-  public async uploadAvatar(@UploadedFile(AvatarValidationPipe) file: Express.Multer.File, @Req() { user }: RequestWithTokenPayload<TokenPayload>) {
-    const updatedUser = this.userService.updateUserAvatar(user.sub, file);
-    return fillObject(UserRdo, updatedUser);
-  }
-
-  @Get('/avatar')
-  @UseGuards(JwtAuthGuard)
-  @ApiResponse({ status: HttpStatus.OK, description: 'Resource for getting user avatar', type: UserRdo })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
-  public async readAvatar(@Req() { user }: RequestWithTokenPayload<TokenPayload>, @Res() res: Response) {
-    const avatarPath = await this.userService.getUserAvatarPath(user.sub);
-    return res.sendFile(avatarPath);
-  }
-
-  @Post('/certificate')
-  @UseGuards(RolesGuard)
-  @UseGuards(JwtAuthGuard)
-  @Roles(`${UserRole.Coach}`)
-  @UseInterceptors(FileInterceptor('certificate'))
-  @ApiResponse({ status: HttpStatus.OK, description: 'Resource for setting user certificate', type: UserRdo })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
-  public async uploadCertificate(@UploadedFile(CertificateValidationPipe) file: Express.Multer.File, @Req() { user }: RequestWithTokenPayload<TokenPayload>) {
-    const updatedCoach = this.userService.updateCoachCertificate(user.sub, file);
-    return fillObject(UserRdo, updatedCoach);
-  }
-
-  @Get('/certificate')
-  @UseGuards(JwtAuthGuard)
-  @ApiResponse({ status: HttpStatus.OK, description: 'Resource for getting user certificate', type: UserRdo })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: UserMessages.USER_NOT_FOUND })
-  public async readCertificate(@Req() { user }: RequestWithTokenPayload<TokenPayload>, @Res() res: Response) {
-    const certificatePath = await this.userService.getCoachCertificatePath(user.sub);
-    return res.sendFile(certificatePath);
   }
 }

@@ -3,7 +3,8 @@ import { GymSort, GymQuery as GQ, GymSortField } from './gym.constant';
 import { GymEntity } from './gym.entity';
 import { GymQuery } from './query/gym.query';
 import { Gym } from '@fit-friends/shared/app-types';
-import { CRUDRepositoryInterface, PrismaService } from '@fit-friends/utils/util-types';
+import { CRUDRepositoryInterface } from '@fit-friends/utils/util-types';
+import { PrismaService } from '@fit-friends/models/models-training';
 
 @Injectable()
 export class GymRepository implements CRUDRepositoryInterface<GymEntity, number, Gym> {

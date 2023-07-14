@@ -4,7 +4,7 @@ import { CRUDRepositoryInterface } from '@fit-friends/utils/util-types';
 import { UserEntity } from './user.entity';
 import { UserQuery } from '../query/user.query';
 import { UserSort, UserSortField, UserQuery as UQ } from './user.constant';
-import { PrismaService } from '../../../../libs/utils/util-types/src/lib/prisma/prisma.service';
+import { PrismaService } from '@fit-friends/models/models-training';
 
 @Injectable()
 export class UserRepository implements CRUDRepositoryInterface<UserEntity, number, User> {

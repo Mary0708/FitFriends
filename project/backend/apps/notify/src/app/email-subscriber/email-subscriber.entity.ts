@@ -4,7 +4,7 @@ import { Subscriber } from '@fit-friends/shared/app-types';
 export class EmailSubscriberEntity implements Entity<EmailSubscriberEntity, Subscriber>, Subscriber {
   public id: number;
   public email: string;
-  public userName: string;
+  public name: string;
   public userId: number;
 
   constructor(emailSubscriber: Subscriber) {
@@ -13,7 +13,7 @@ export class EmailSubscriberEntity implements Entity<EmailSubscriberEntity, Subs
 
   public fillEntity(entity) {
     this.email = entity.email;
-    this.userName = entity.userName;
+    this.name = entity.name;
     this.id = entity.id ?? '';
   }
 

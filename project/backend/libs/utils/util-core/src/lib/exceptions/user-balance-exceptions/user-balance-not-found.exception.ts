@@ -5,6 +5,6 @@ export class UserBalanceNotFoundIdException extends NotFoundException {
     private readonly logger: Logger,
     userId: number
   ) {
-    super(`The balance of the user with ${userid} was not found`);
+    super(`The balance of the user with ${userId} was not found`);
   }
 }

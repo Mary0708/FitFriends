@@ -4,8 +4,8 @@ import { fillObject } from '@fit-friends/utils/util-core';
 import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { TrainingOrderRdo } from './rdo/training-order.rdo';
 import { TrainingOrdersService } from './training-orders.service';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { TrainingOrdersQuery } from './query/training-orders.query';
+import { CreateOrderDto } from '../../dto/create-order.dto';
+import { TrainingOrdersQuery } from '../../query/training-orders.query';
 
 @ApiTags('training-orders')
 @Controller('orders')

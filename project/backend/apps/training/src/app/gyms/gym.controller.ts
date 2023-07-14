@@ -6,8 +6,8 @@ import { GymService } from './gym.service';
 import { ApiIndexQuery } from './query/gym.api-query.decorator';
 import { GymQuery } from './query/gym.query';
 import { GymRdo } from './rdo/gym.rdo';
-import { fillObject, Roles } from '@fit-friends/utils/util-core';
-import { RolesGuard } from '@fit-friends/utils/util-types';
+import { fillObject } from '@fit-friends/utils/util-core';
+import { Roles, RolesGuard } from '@fit-friends/utils/util-types';
 import { JwtAuthGuard } from '@fit-friends/utils/util-types';
 
 @ApiTags('gyms')

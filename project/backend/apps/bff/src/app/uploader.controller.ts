@@ -7,7 +7,7 @@ import { CheckAuthGuard } from './guards/check-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import 'multer';
 import FormData from 'form-data';
-import { UserIdTrainingInterceptor } from './interceptors/userid-tarining.interceptor';
+import { UserIdTrainingInterceptor } from './interceptors/userid-training.interceptor';
 import { CoachIdInterceptor } from './interceptors/coachId.interceptor';
 import { RoleCoachInterceptor } from './interceptors/role-coach.interceptor';
 

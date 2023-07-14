@@ -10,7 +10,7 @@ export const enum NameTraining {
   MaxLength = 15
 }
 
-export const enum DescriptionTraining {
+export const enum description {
   MinLength = 10,
   MaxLength = 140
 }

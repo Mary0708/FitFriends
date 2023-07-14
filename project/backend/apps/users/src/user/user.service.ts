@@ -11,9 +11,7 @@ import { UserMessages } from './user.constant';
 import { ConfigService } from '@nestjs/config';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserQuery } from '../query/user.query';
-import { resolve } from 'path';
-import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UserRoleException, UsersNotFoundException, getFileName, isFolderExistsOrCreate } from '@fit-friends/utils/util-core';
-import { writeFileSync, existsSync, unlinkSync } from 'fs';
+import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UsersNotFoundException } from '@fit-friends/utils/util-core';
 
 @Injectable()
 export class UserService {
@@ -144,95 +142,4 @@ export class UserService {
   public async deleteUser(userId: number): Promise<void> {
     return this.userRepository.destroy(userId);
   }
-
-  public async updateUserAvatar(id: number, file: Express.Multer.File): Promise<User> {
-    const existUser = await this.getUserById(id);
-    const userAvatar = existUser?.avatar;
-    const avatarName = getFileName(file);
-    const avatarPath = resolve(
-      __dirname,
-      this.configService.get<string>('file.dest'),
-      this.configService.get<string>('file.avatarUploadFolder'),
-      existUser.id.toString(),
-    );
-
-    isFolderExistsOrCreate(avatarPath);
-    writeFileSync(resolve(avatarPath, avatarName), file.buffer);
-
-    if (userAvatar && avatarName) {
-      const oldAvatar = resolve(avatarPath, userAvatar);
-      if (existsSync(oldAvatar)) {
-        unlinkSync(oldAvatar);
-      }
-    }
-
-    delete existUser["coachFeatures"];
-    delete existUser["userFeatures"];
-
-    return this.userRepository.update(id, { ...existUser, avatar: avatarName, updatedAt: new Date() });
-  }
-
-  public async updateCoachCertificate(id: number, file: Express.Multer.File): Promise<User> {
-    const existUser = await this.getUserById(id);
-    const coachFeature = existUser['coachFeatures'];
-    const certificateName = getFileName(file);
-    const certificatePath = resolve(
-      __dirname,
-      this.configService.get<string>('file.dest'),
-      this.configService.get<string>('file.certificateUploadFolder'),
-      existUser.id.toString(),
-    );
-
-    isFolderExistsOrCreate(certificatePath);
-    writeFileSync(resolve(certificatePath, certificateName), file.buffer);
-
-    if (coachFeature.certificate && certificateName) {
-      const oldCertificate = resolve(certificatePath, coachFeature.certificate);
-      if (existsSync(oldCertificate)) {
-        unlinkSync(oldCertificate);
-      }
-    }
-
-    delete coachFeature.id;
-    coachFeature.certificate = certificateName;
-
-
-    return this.userRepository.update(id, { features: coachFeature, updatedAt: new Date() });
-  }
-
-  public async getUserAvatarPath(id: number): Promise<string> {
-    const existUser = await this.getUserById(id);
-    const defaultAvatar = this.configService.get<string>('file.defaultAvatar');
-
-    if (existUser.avatar === defaultAvatar) {
-      return resolve(
-        __dirname,
-        this.configService.get<string>('file.defaultResourceFolder'),
-        this.configService.get<string>('file.defaultAvatarFolder'),
-        existUser.avatar
-      );
-    }
-
-    return resolve(
-      __dirname,
-      this.configService.get<string>('file.dest'),
-      this.configService.get<string>('file.avatarUploadFolder'),
-      existUser.id.toString(),
-      existUser.avatar
-    );
-  }
-
-  public async getCoachCertificatePath(id: number): Promise<string> {
-    const existUser = await this.getUserById(id);
-    const coachFeature = existUser['coachFeatures'];
-
-    return resolve(
-      __dirname,
-      this.configService.get<string>('file.dest'),
-      this.configService.get<string>('file.certificateUploadFolder'),
-      existUser.id.toString(),
-      coachFeature.certificate
-    );
-  }
-
 }

@@ -3,18 +3,16 @@ import { HttpService } from '@nestjs/axios';
 import { ApplicationServiceURL } from './app.config';
 import { Request } from 'express';
 import { AxiosExceptionFilter } from './filters/axios-exception.filter';
-import { DefaultQuery } from '../../../training/src/app/comments/query/default.query';
-import { TrainingOrdersQuery } from '../../../training/src/app/training-orders/query/training-orders.query';
 import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { CheckAuthGuard } from './guards/check-auth.guard';
 import { UserIdInterceptor } from './interceptors/userid.interceptor';
 import { RoleUserInterceptor } from './interceptors/role-user.interceptor';
-import { CreateRequestDto } from '../../../training/src/app/training-request/dto/create-request.dto';
-import { CreateOrderDto } from '../../../training/src/app/training-orders/dto/create-order.dto';
 import { UserIdOrderInterceptor } from './interceptors/userid-order.interceptor';
 import { InintiatorIdInterceptor } from './interceptors/initiatorid.interceptor';
 import { UserIdExistsInterceptor } from './interceptors/userid-exists.interceptor';
 import { UserSubscriptionDto } from '@fit-friends/user/user-dto';
+import { CreateOrderDto, CreateRequestDto } from '@fit-friends/training/training-dto';
+import { DefaultQuery, TrainingOrdersQuery } from '@fit-friends/training/training-query';
 
 @Controller('user')
 @UseFilters(AxiosExceptionFilter)
@@ -145,9 +143,9 @@ export class UserAccountController {
   @UseInterceptors(InintiatorIdInterceptor)
   @UseInterceptors(RoleUserInterceptor)
   @Post('request/update/:id')
-  public async editTrainingRequest(@Param('id', MongoidValidationPipe) id: string, @Body() statusRequest: string) {
+  public async editTrainingRequest(@Param('id', MongoidValidationPipe) id: string, @Body() requestStatus: string) {
 
-    const { data } = await this.httpService.axiosRef.post(`${ApplicationServiceURL.Request}/update/${id}`, statusRequest);
+    const { data } = await this.httpService.axiosRef.post(`${ApplicationServiceURL.Request}/update/${id}`, requestStatus);
     return data;
   }
 

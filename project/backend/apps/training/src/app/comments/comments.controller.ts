@@ -2,8 +2,8 @@ import { fillObject } from '@fit-friends/utils/util-core';
 import { Body, Controller, Get, HttpStatus, Param, Post, Query } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { CommentsService } from './comment.service';
-import { CommentDto } from './dto/comment.dto';
-import { DefaultQuery } from './query/default.query';
+import { CommentDto } from '../../dto/comment.dto';
+import { DefaultQuery } from '../../query/default.query';
 import { CommentRdo } from './rdo/comment.rdo';
 
 @ApiTags('comments')

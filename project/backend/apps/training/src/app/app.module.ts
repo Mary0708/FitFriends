@@ -5,10 +5,10 @@ import { ConfigTrainingModule } from '@fit-friends/config/config-training';
 import { TrainingModule } from './training/training.module';
 import { TrainingOrdersModule } from './training-orders/training-orders.module';
 import { NotifyUserModule } from './notify-user/notify-user.module';
-import { TrainingRequestModule } from './training-request/training-request.module';
-import { GymsModule } from './gyms/gym.module.js';
-import { CommentsModule } from './comments/comments.module.js';
-import { TrainingCatalogQuery } from './training/query/training-catalog.query.js';
+import { RequestModule } from './request/request.module';
+import { GymsModule } from './gyms/gym.module';
+import { CommentsModule } from './comments/comments.module';
+import { TrainingCatalogQuery } from '../query/training-catalog.query';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { TrainingCatalogQuery } from './training/query/training-catalog.query.js
     ConfigTrainingModule,
     MongooseModule.forRootAsync(getMongooseOptions('application.db')),
     NotifyUserModule,
-    TrainingRequestModule,
+    RequestModule,
     GymsModule,
     CommentsModule,
     TrainingCatalogQuery

@@ -1,53 +1,65 @@
 {
-  "name": "backend",
+  "name": "users",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/backend/src",
+  "sourceRoot": "apps/users/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/backend",
-        "main": "apps/backend/src/main.ts",
-        "tsConfig": "apps/backend/tsconfig.app.json",
-        "assets": ["apps/backend/src/assets"],
+        "outputPath": "dist/apps/users",
+        "main": "apps/users/src/main.ts",
+        "tsConfig": "apps/users/tsconfig.app.json",
+        "assets": [
+          "apps/users/src/assets"
+        ],
         "isolatedConfig": true,
-        "webpackConfig": "apps/backend/webpack.config.js"
+        "webpackConfig": "apps/users/webpack.config.js"
       },
       "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "backend:build"
+        "buildTarget": "users:build"
       },
       "configurations": {
+        "development": {
+          "buildTarget": "users:build:development"
+        },
         "production": {
-          "buildTarget": "backend:build:production"
+          "buildTarget": "users:build:production"
         }
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/backend/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/users/**/*.ts"
+        ]
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/backend/jest.config.ts",
+        "jestConfig": "apps/users/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -55,41 +67,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "db-validate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx prisma validate --schema ./prisma/schema.prisma",
-        "cwd": "apps/backend"
-      }
-    },
-    "db-migrate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx prisma migrate dev --schema ./prisma/schema.prisma --name initial --skip-generate --skip-seed",
-        "cwd": "apps/backend"
-      }
-    },
-    "db-reset": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx prisma migrate reset --schema ./prisma/schema.prisma --force --skip-generate --skip-seed",
-        "cwd": "apps/backend"
-      }
-    },
-    "db-generate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx prisma generate --schema ./prisma/schema.prisma",
-        "cwd": "apps/backend"
-      }
-    },
-    "db-fill": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx prisma db seed",
-        "cwd": "apps/backend"
       }
     }
   },

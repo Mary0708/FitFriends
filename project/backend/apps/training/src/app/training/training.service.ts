@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { TrainingRepository } from './training.repository';
 import { TrainingEntity } from './training.entity';
-import { CreateTrainingDTO } from './dto/create-training.dto';
-import { EditTrainingDTO } from './dto/edit-training.dto';
-import { TrainingCatalogQuery } from './query/training-catalog.query';
-import { TrainingQuery } from './query/training.query';
 import { Training } from '@fit-friends/shared/app-types';
 import { TrainingNotFoundIdException, TrainingNotOwnerIdException, TrainingsNotFoundException, UserNotFoundIdException } from '@fit-friends/utils/util-core';
 import { UserService } from 'apps/users/src/user/user.service';
+import { CreateTrainingDTO } from '../../dto/create-training.dto.js';
+import { EditTrainingDTO } from '../../dto/edit-training.dto.js';
+import { TrainingCatalogQuery } from '../../query/training-catalog.query.js';
+import { TrainingQuery } from '../../query/training.query.js';
 
 @Injectable()
 export class TrainingService {

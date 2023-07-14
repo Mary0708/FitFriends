@@ -1,0 +1,270 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     Int            @id @default(autoincrement())
+  email                  String         @unique()
+  name                   String
+  avatar                 String
+  password               String
+  gender                 UserGender
+  dateBirth              DateTime
+  role                   UserRole       @default(User)
+  location               Location
+  level                  UserLevel      @default(Beginner)
+  trainingStyle          TrainingStyle  @default(Aerobics)
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @default(now())
+  review                 Review[]
+  order                  Order[]
+  requester              Request[]      @relation(name: "requester")
+  requested              Request[]      @relation(name: "requested")
+  notifying              Notification[] @relation(name: "notifying")
+  notified               Notification[] @relation(name: "notified")
+  token                  Token[]
+  userFeatures           UserFeatures?
+  coachFeatures          CoachFeatures?
+  training               Training[]
+  friends                User[]         @relation(name: "friends") // A table for friends is created implicitly through many-to-many self-relation
+  symmetricFriends       User[]         @relation(name: "friends") // This second "side" of the "friends" relation exists to satisfy prisma's requirements, not for direct access
+  subscriptions          User[]         @relation(name: "subscriptions") // A table for subscriptions is created implicitly through many-to-many self-relation
+  symmetricSubscriptions User[]         @relation(name: "subscriptions") // This second "side" of the "subscriptions" relation exists to satisfy prisma's requirements, not for direct access
+  gyms                   Gym[]
+  userBalance            UserBalance[]
+
+  @@map("users")
+}
+
+model UserFeatures {
+  id                 Int          @id @default(autoincrement())
+  user               User         @relation(fields: [id], references: [id], onDelete: Cascade)
+  trainingTime       TrainingTime @default(Time30)
+  caloriesLoss       Int
+  caloriesLossPerDay Int
+  isReadyForTraining Boolean      @default(true)
+
+  @@map("user-features")
+}
+
+model CoachFeatures {
+  id              Int     @id @default(autoincrement())
+  user            User    @relation(fields: [id], references: [id], onDelete: Cascade)
+  certificate     String
+  merits          String
+  isPersonalCoach Boolean
+
+  @@map("coach-features")
+}
+
+model Training {
+  id              Int           @id @default(autoincrement())
+  title           String
+  backgroundImage String
+  level           UserLevel
+  trainingStyle   TrainingStyle
+  trainingTime    TrainingTime
+  price           Int           @default(0)
+  caloriesLoss    Int
+  description     String
+  gender          UserGender
+  video           String
+  rating          Float         @default(0)
+  reviewsCount    Int           @default(0)
+  coach           User          @relation(fields: [coachId], references: [id])
+  coachId         Int
+  isSpecial       Boolean
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @default(now())
+  review          Review[]
+  order           Order[]
+  userBalance     UserBalance[]
+
+  @@map("trainings")
+}
+
+model Gym {
+  id               Int           @id @default(autoincrement())
+  title            String
+  location         Location
+  isVerified       Boolean
+  gymFeature       GymFeature[]
+  photo            String[]
+  description      String
+  price            Int           @default(0)
+  constructionDate DateTime
+  order            Order[]
+  userBalance      UserBalance[]
+  user             User[]
+
+  @@map("gyms")
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  trainingId Int
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  rating     Int
+  content    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+
+  @@map("reviews")
+}
+
+model Order {
+  id            Int           @id @default(autoincrement())
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        Int
+  category      OrderCategory
+  gym           Gym?          @relation(fields: [gymId], references: [id], onDelete: NoAction)
+  gymId         Int?
+  training      Training?     @relation(fields: [trainingId], references: [id], onDelete: NoAction)
+  trainingId    Int?
+  price         Int           @default(0)
+  quantity      Int
+  total         Int
+  paymentMethod Payment
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @default(now())
+
+  @@map("orders")
+}
+
+model Request {
+  id          Int             @id @default(autoincrement())
+  category    RequestCategory
+  requester   User            @relation(name: "requester", fields: [requesterId], references: [id], onDelete: Cascade)
+  requesterId Int
+  requested   User            @relation(name: "requested", fields: [requestedId], references: [id], onDelete: NoAction)
+  requestedId Int
+  status      RequestStatus
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @default(now())
+
+  @@map("requests")
+}
+
+model Notification {
+  id              Int      @id @default(autoincrement())
+  notified        User     @relation(name: "notified", fields: [notifiedUserId], references: [id], onDelete: Cascade)
+  notifiedUserId  Int
+  notifying       User?    @relation(name: "notifying", fields: [notifyingUserId], references: [id], onDelete: NoAction)
+  notifyingUserId Int?
+  text            String
+  isChecked       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+
+  @@map("notification")
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  tokenId   String   @unique()
+  expiresIn DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@map("tokens")
+}
+
+model UserBalance {
+  id         Int           @id @default(autoincrement())
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  category   OrderCategory
+  gym        Gym?          @relation(fields: [gymId], references: [id], onDelete: NoAction)
+  gymId      Int?
+  training   Training?     @relation(fields: [trainingId], references: [id], onDelete: NoAction)
+  trainingId Int?
+  available  Int           @default(0)
+  spent      Int           @default(0)
+  updatedAt  DateTime      @default(now())
+
+  @@map("user-balances")
+}
+
+enum UserRole {
+  User
+  Coach
+}
+
+enum UserGender {
+  Male
+  Female
+  Indifferent
+}
+
+enum UserLevel {
+  Beginner
+  Middle
+  Professional
+}
+
+enum Location {
+  Pionerskaya
+  Petrogradskaya
+  Udelnaya
+  Zvyozdnaya
+  Sportivnaya
+}
+
+enum TrainingTime {
+  Time30
+  Time50
+  Time80
+  Time100
+}
+
+enum TrainingStyle {
+  Yoga
+  Running
+  Boxing
+  Stretching
+  Crossfit
+  Aerobics
+  Pilates
+}
+
+enum GymFeature {
+  SwimmingPool
+  FreeParking
+  ChildrenRoom
+  Massage
+}
+
+enum OrderCategory {
+  SeasonPass
+  Training
+}
+
+enum Payment {
+  Visa
+  Mir
+  Umoney
+}
+
+enum RequestStatus {
+  Pending
+  Rejected
+  Accepted
+}
+
+enum RequestCategory {
+  Coworking
+  Personal
+  Friendship
+}

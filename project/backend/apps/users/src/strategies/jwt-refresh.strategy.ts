@@ -5,7 +5,7 @@ import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { RefreshTokenPayload} from '@fit-friends/shared/app-types';
 import { TokenNotExistsException } from '@fit-friends/utils/util-core';
-import { RefreshTokenService } from '../refresh-token/refresh-token.service.js';
+import { RefreshTokenService } from '../refresh-token/refresh-token.service';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {

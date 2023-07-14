@@ -13,7 +13,7 @@ export class EmailSubscriberModel extends Document implements  Subscriber {
   public email: string;
 
   @Prop()
-  public userName: string;
+  public name: string;
 
 }
 

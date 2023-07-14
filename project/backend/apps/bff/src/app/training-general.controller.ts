@@ -5,9 +5,8 @@ import { AxiosExceptionFilter } from './filters/axios-exception.filter';
 import { CheckAuthGuard } from './guards/check-auth.guard';
 import { RoleUserInterceptor } from './interceptors/role-user.interceptor';
 import { UserIdInterceptor } from './interceptors/userid.interceptor';
-import { TrainingCatalogQuery } from '../../../training/src/app/training/query/training-catalog.query';
-import { CommentDto } from '../../../training/src/app/comments/dto/comment.dto';
-import { DefaultQuery } from '../../../training/src/app/comments/query/default.query';
+import { CommentDto } from '@fit-friends/training/training-dto';
+import { TrainingCatalogQuery, DefaultQuery } from '@fit-friends/training/training-query';
 
 @Controller('training')
 @UseFilters(AxiosExceptionFilter)

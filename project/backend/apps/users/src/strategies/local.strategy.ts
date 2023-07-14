@@ -11,7 +11,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     private userService: UserService
   ) {
     super({
-      usernameField: 'email'
+      nameField: 'email'
     });
   }
 

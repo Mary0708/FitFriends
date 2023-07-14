@@ -21,7 +21,7 @@ export class CommentModel extends Document implements Comment  {
   @Prop({
     required: true,
   })
-  public ratingTraining: number;
+  public rating: number;
 
   @Prop({
     required: true})

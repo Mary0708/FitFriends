@@ -1,0 +1,97 @@
+#  Добавить друга
+POST http://localhost:4000/api/user/friends/add/649866f6dac052e861589f59 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+###
+
+#  Удалить пользователя из друзей
+POST http://localhost:4000/api/user/friends/delete/649866f6dac052e861589f59 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+###
+
+#  Список друзей пользователя
+GET http://localhost:4000/api/user/friends/show HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+###
+
+# Создание заказа
+POST http://localhost:4000/api/user/orders/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+{
+  "trainingId": "123564",
+  "trainingCount": 3,
+  "paymentOption": "visa"
+}
+###
+
+# Списание тренировки
+POST http://localhost:4000/api/user/orders/reduce/64a44ab58cc4fa6456f4121e HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+###
+
+# Создание запроса на персональную/совместную тренировку
+POST http://localhost:4000/api/user/request/training/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+{
+  "userId": "5614",
+  "requestStatus": "Rejected",
+  "requestCategory": "Personal"
+}
+###
+
+
+# Изменений статуса заявки
+POST http://localhost:4000/api/user/request/update/64a44b118cc4fa6456f4122c HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+{
+  "requestStatus": "Rejected"
+}
+###
+
+# Баланс пользователя
+GET http://localhost:4000/api/user/orders?sortPrice=desc HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+###
+
+# Удаление заказа
+DELETE http://localhost:4000/api/user/orders/delete/64a44aa08cc4fa6456f4121a HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+###
+
+# Подписка на получение уведомлений по email на появление новых тренировок определённого тренера
+POST http://localhost:4000/api/user/subscription/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+{
+  "coachId": "156156"
+}
+
+###
+
+# Отмена подписки на других пользователей.
+DELETE  http://localhost:4000/api/user/subscription/delete HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+{
+  "coachId": "654646"
+}
+###
+# Рассылка почтовых уведомлений на email о новых тренировках
+GET http://localhost:4000/api/user/notify/newtraining HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4MDkxNTliNTkyNzdhYTBjNjE1YTciLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCY0LLQsNC90L7QsiDQmNCy0LDQvSIsImlhdCI6MTY4ODQ4ODQyOSwiZXhwIjoxNjg4NDg5MzI5fQ.p2zWcQHwXy0JHV-RJAaRV_R-zYkWWxnJ0xnQQ4ZbR0Y
+Content-Type: application/json
+
+###
+

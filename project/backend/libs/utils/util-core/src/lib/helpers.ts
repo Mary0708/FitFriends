@@ -10,26 +10,16 @@ export function getRandomInteger(a = 0, b = 1) {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 }
 
-export function getMongoConnectionString({username, password, host, port, databaseName, authDatabase}): string {
-  return `mongodb://${username}:${password}@${host}:${port}/${databaseName}?authSource=${authDatabase}`;
+export function getMongoConnectionString({name, password, host, port, databaseName, authDatabase}): string {
+  return `mongodb://${name}:${password}@${host}:${port}/${databaseName}?authSource=${authDatabase}`;
 }
 export function getRabbitMQConnectionString({user, password, host, port}): string {
 
   return `amqp://${user}:${password}@${host}:${port}`;
 }
 
-export function getFriendRemove(userName: string) {
-  return `The user ${userName} has removed you from the friends list`;
-}
-
-export function getFileName(file: Express.Multer.File) {
-  const name = file.originalname.split('.')[0];
-  const fileExtName = extname(file.originalname);
-  const randomName = Array(4)
-    .fill(null)
-    .map(() => Math.round(Math.random() * 10).toString(10))
-    .join('');
-  return `${name}${randomName}${fileExtName}`;
+export function getFriendRemove(name: string) {
+  return `The user ${name} has removed you from the friends list`;
 }
 
 export function fillObject<T, V>(someDto: ClassConstructor<T>, plainObject: V, groups?: string[]) {

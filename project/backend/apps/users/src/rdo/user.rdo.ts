@@ -2,6 +2,7 @@ import { Expose, Transform, Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { Location, LocationType, TrainingStyle, TrainingStyleType, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '@fit-friends/shared/app-types';
 import { UserGender } from '@fit-friends/shared/app-types';
+import { FeaturesRdo } from './user-features.rdo';
 
 export class UserRdo {
   @ApiProperty({
@@ -83,6 +84,20 @@ export class UserRdo {
   })
   @Expose()
   public trainingStyle: TrainingStyleType;
+
+  @ApiProperty({
+    description: 'User first name',
+    example: 'John Doe',
+  })
+  @Expose()
+  @Type(() => FeaturesRdo)
+  @Transform(({ obj }) => {
+    obj.features = obj.userFeatures ? obj.userFeatures : obj.coachFeatures;
+    delete obj.features.id;
+    return obj.features;
+  })
+  public features: FeaturesRdo;
+
 
   @ApiProperty({
     description: 'Date of creation of the user account',

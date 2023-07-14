@@ -4,7 +4,7 @@ export class CommentEntity implements Comment {
   public _id: string;
   public userId: number;
   public trainingId: number;
-  public ratingTraining: number;
+  public rating: number;
   public message: string;
 
  constructor(commentTraining: Comment) {
@@ -19,7 +19,7 @@ export class CommentEntity implements Comment {
     this._id = commentTraining._id;
     this.userId = commentTraining.userId;
     this.trainingId = commentTraining.trainingId;
-    this.ratingTraining = commentTraining.ratingTraining;
+    this.rating = commentTraining.rating;
     this.message = commentTraining.message;
   }
 }

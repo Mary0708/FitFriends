@@ -5,7 +5,7 @@ import { UserBalanceEntity } from './user-balance.entity';
 import { UserBalanceQuery } from './query/user-balance.query';
 import { UserBalanceValidity as BV } from './user-balance.constant';
 import { OrderCategoryType, OrderCategory, UserBalance } from '@fit-friends/shared/app-types';
-import { UserBalanceNotFoundIdException } from '@fit-friends/utils/util-types';
+import { UserBalanceNotFoundIdException } from '@fit-friends/utils/util-core';
 
 @Injectable()
 export class UserBalanceService {
@@ -16,6 +16,7 @@ export class UserBalanceService {
 
   public async getUserBalanceByService(category: OrderCategoryType, serviceId: number, userId: number): Promise<UserBalance> {
     const existBalance = await this.balanceRepository.findByServiceId(userId, { serviceId });
+   
     if (!existBalance) {
       throw new UserBalanceNotFoundIdException(this.logger, userId);
     }
@@ -25,6 +26,7 @@ export class UserBalanceService {
 
   public async getUserBalance(query: UserBalanceQuery, userId: number): Promise<UserBalance[]> {
     const existBalance = await this.balanceRepository.find(query, { userId });
+  
     if (!existBalance?.length) {
       throw new UserBalanceNotFoundIdException(this.logger, userId);
     }
@@ -47,7 +49,7 @@ export class UserBalanceService {
 
     if (!existBalance) {
       if (isIncrease) {
-        return this.createUserBalance(dto, userId);  //Существование gym или training осуществляется в OrderModule->createOrder()
+        return this.createUserBalance(dto, userId); 
       } else {
         throw new UserBalanceNotFoundIdException(this.logger, userId);
       }

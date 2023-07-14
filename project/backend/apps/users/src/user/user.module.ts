@@ -7,10 +7,10 @@ import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
 import { RefreshTokenModule } from '../refresh-token/refresh-token.module';
-import { JwtAccessStrategy } from '../strategies/jwt-access.strategy.js';
+import { JwtAccessStrategy } from '../strategies/jwt-access.strategy';
 import { LocalStrategy } from '../strategies/local.strategy';
 import { JwtRefreshStrategy } from '../strategies/jwt-refresh.strategy';
-import { NotifyUserModule } from '../user-notify/notify-user.module.js';
+import { NotifyUserModule } from '../user-notify/notify-user.module';
 
 @Module({
   imports: [

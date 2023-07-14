@@ -3,7 +3,8 @@ import { UserBalanceSort, UserBalanceQuery as BQ, UserBalanceSortField } from '.
 import { UserBalanceEntity } from './user-balance.entity';
 import { UserBalanceQuery } from './query/user-balance.query';
 import { UserBalance } from '@fit-friends/shared/app-types';
-import { CRUDRepositoryInterface, PrismaService } from '@fit-friends/utils/util-types';
+import { CRUDRepositoryInterface } from '@fit-friends/utils/util-types';
+import { PrismaService } from '@fit-friends/models/models-training';
 
 @Injectable()
 export class UserBalanceRepository implements CRUDRepositoryInterface<UserBalanceEntity, number, UserBalance> {

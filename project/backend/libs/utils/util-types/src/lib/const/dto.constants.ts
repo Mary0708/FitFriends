@@ -19,7 +19,7 @@ export const enum DescriptionUser {
   MaxLength = 140
 }
 
-export const enum CaloriesReset {
+export const enum caloriesLoss {
   MinCount = 1000,
   MaxCount = 5000
 }
@@ -38,7 +38,7 @@ export const enum NameTraining {
   MaxLength = 15
 }
 
-export const enum DescriptionTraining {
+export const enum description {
   MinLength = 10,
   MaxLength = 140
 }

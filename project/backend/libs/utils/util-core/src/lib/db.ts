@@ -7,7 +7,7 @@ export function getMongooseOptions(optionSpace: string): MongooseModuleAsyncOpti
     useFactory: async (config: ConfigService) => {
       return {
         uri: getMongoConnectionString({
-          username: config.get<string>(`${optionSpace}.user`),
+          name: config.get<string>(`${optionSpace}.user`),
           password: config.get<string>(`${optionSpace}.password`),
           host: config.get<string>(`${optionSpace}.host`),
           port: config.get<string>(`${optionSpace}.port`),

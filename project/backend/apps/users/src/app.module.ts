@@ -1,11 +1,11 @@
 import { getMongooseOptions } from '@fit-friends/utils/util-core';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrismaModule } from '../../../libs/utils/util-types/src/lib/prisma/prisma.module';
+import { PrismaModule } from '@fit-friends/models/models-training';
 import { RefreshTokenModule } from './refresh-token/refresh-token.module';
 import { UsersModule } from './user/user.module';
 import { NotifyUserModel } from './user-notify/notify-user.model';
-import { UserBalanceModule } from './user-balance/user-balance.module.js';
+import { UserBalanceModule } from './user-balance/user-balance.module';
 
 @Module({
   imports: [

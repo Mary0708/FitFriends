@@ -1,9 +1,9 @@
 import { Transform } from 'class-transformer';
 import { IsEnum, IsIn, IsNumber, IsOptional } from 'class-validator';
-import { ValidityMessage as VM } from '@fit-friends/utils/util-types';
+import { IsBooleanProp, ValidityMessage as VM } from '@fit-friends/utils/util-types';
 import { GymFeature, GymFeatureType, Location, LocationType } from '@fit-friends/shared/app-types';
 import { GymQuery as GQ, GymSort, GymValidity as GV } from '../gym.constant';
-import { transformToMax, transformToMin, transformStringToBool, IsBooleanProp } from '@fit-friends/utils/util-core';
+import { transformToMax, transformToMin, transformStringToBool } from '@fit-friends/utils/util-core';
 
 export class GymQuery {
   @Transform(({ value }) => transformToMax(value, GQ.GYM_QUERY_MIN, GQ.GYM_QUERY_MAX))

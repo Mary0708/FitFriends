@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { genSalt, hash, compare } from 'bcrypt';
 import { CoachFeatures, Features, LocationType, TrainingStyle, TrainingStyleType, User, UserGender, UserGenderType, UserLevel, UserLevelType, UserRole, UserRoleType } from '@fit-friends/shared/app-types'
-import { Entity } from '@fit-friends/utils/util-types';
+import { Entity } from '@fit-friends/utils/util-core';
 import { SALT_ROUNDS } from './user.constant';
 
 @Injectable()

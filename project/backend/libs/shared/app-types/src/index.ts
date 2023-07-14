@@ -29,6 +29,7 @@ export * from './lib/comment.interface'
 export * from './lib/user-balance.type'
 export * from './lib/file.interface'
 export * from './lib/user-subscription.interface'
+export * from './lib/user-request.type'
 
 //tokens
 export * from './lib/token.type'

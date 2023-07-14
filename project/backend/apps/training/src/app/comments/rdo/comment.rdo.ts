@@ -25,7 +25,7 @@ export class CommentRdo {
     description: 'Rating training'
   })
   @Expose()
-  public ratingTraining: number;
+  public rating: number;
 
   @ApiProperty({
     description: 'Text comment'

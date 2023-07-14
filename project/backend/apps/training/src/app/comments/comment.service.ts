@@ -3,8 +3,8 @@ import { TRAINING_NOT_FOUND } from '../training/training.constant';
 import { TrainingRepository } from '../training/training.repository';
 import { CommentEntity } from './comment.entity';
 import { CommentRepository } from './comment.repository';
-import { DefaultQuery } from './query/default.query';
-import { CommentDto } from './dto/comment.dto';
+import { DefaultQuery } from '../../query/default.query';
+import { CommentDto } from '../../dto/comment.dto';
 
 @Injectable()
 export class CommentsService {
@@ -21,7 +21,7 @@ export class CommentsService {
     }
     const newComment = await this.commentRepository.create(commentEntity);
     const allComments = await this.commentRepository.findByTrainingId(newComment.trainingId);
-    const allRatings = allComments.map((el)=>el.ratingTraining);
+    const allRatings = allComments.map((el)=>el.rating);
     const newRating = Math.floor(allRatings.reduce((a,b)=>a+b)/allRatings.length);
     await this.trainingRepository.updateRating(newComment.trainingId, newRating);
     return newComment

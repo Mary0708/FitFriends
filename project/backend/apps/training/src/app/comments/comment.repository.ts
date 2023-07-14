@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CommentModel } from './comments.model';
 import { Model } from 'mongoose';
 import { DEFAULT_LIST_COUNT_LIMIT } from '@fit-friends/utils/util-types';
-import { DefaultQuery } from './query/default.query';
+import { DefaultQuery } from '../../query/default.query';
 
 @Injectable()
 export class CommentRepository {

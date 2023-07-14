@@ -2,15 +2,15 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Query
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrainingService } from './training.service';
 import { DataNotifyTraining, RabbitRouting, RequestWithTokenPayload, TokenPayload, TrainingForSend, UserRole } from '@fit-friends/shared/app-types';
-import { Roles, fillObject } from '@fit-friends/utils/util-core';
+import { fillObject } from '@fit-friends/utils/util-core';
 import { RabbitRPC } from '@golevelup/nestjs-rabbitmq';
 import { TrainingRdo } from './rdo/training.rdo';
-import { CreateTrainingDTO } from './dto/create-training.dto';
 import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
-import { TrainingCatalogQuery } from './query/training-catalog.query.js';
-import { TrainingQuery } from './query/training.query.js';
-import { EditTrainingDTO } from './dto/edit-training.dto.js';
-import { RolesGuard, JwtAuthGuard } from '@fit-friends/utils/util-types';
+import { RolesGuard, JwtAuthGuard, Roles } from '@fit-friends/utils/util-types';
+import { CreateTrainingDTO } from '../../dto/create-training.dto.js';
+import { EditTrainingDTO } from '../../dto/edit-training.dto.js';
+import { TrainingCatalogQuery } from '../../query/training-catalog.query.js';
+import { TrainingQuery } from '../../query/training.query.js';
 
 @ApiTags('training')
 @Controller('training')

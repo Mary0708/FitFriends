@@ -2,6 +2,6 @@ export interface Comment {
   _id?: string;
   userId: number;
   trainingId: number;
-  ratingTraining: number;
+  rating: number;
   message: string;
 }

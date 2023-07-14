@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { TrainingOrdersEntity } from './training-orders.entity';
 import { TrainingOrdersModel } from './training-orders.model';
-import { TrainingOrdersQuery } from './query/training-orders.query.js';
+import { TrainingOrdersQuery } from '../../query/training-orders.query.js';
 
 @Injectable()
 export class TrainingOrdersRepository implements CRUDRepositoryInterface<TrainingOrdersEntity, number, Order> {
