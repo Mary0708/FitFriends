@@ -27,6 +27,7 @@ export class RefreshTokenService {
   }
 
   public async deleteRefreshSession(tokenId: string) {
+  
     if (tokenId) {
       await this.refreshTokenRepository.deleteByTokenId(tokenId);
     }

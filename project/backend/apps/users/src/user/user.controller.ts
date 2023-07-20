@@ -36,23 +36,17 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   @ApiResponse({ status: HttpStatus.OK, description: 'Get a new access/refresh tokens', type: TokenPayload })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: UserMessages.INVALID_TOKEN })
-  async refresh(@Req() request: RequestWithTokenPayload<RefreshTokenPayload>) {
-    const { user: tokenPayload } = request;
-    return this.userService.loginUser({
-      name: tokenPayload.name,
-      role: tokenPayload.role,
-      email: tokenPayload.email,
-      id: tokenPayload.sub
-    }, tokenPayload.refreshTokenId);
+  public async refreshToken(@Req() { user }: RequestWithUser, tokenId: string) {
+    return this.userService.createUserToken(user, tokenId);
   }
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
+  @HttpCode(HttpStatus.OK)
   @ApiResponse({ status: HttpStatus.OK, description: UserMessages.LOGIN, type: TokenPayload })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserMessages.WRONG_PASSWORD} or ${UserMessages.WRONG_LOGIN}` })
-  public async login(@Req() req: RequestWithUser) {
-    const { user } = req;
-    return this.userService.loginUser(user);
+  public async login(@Req() { user }: RequestWithUser, tokenId: string) {
+    return this.userService.createUserToken(user, tokenId);
   }
 
   @Get('login')

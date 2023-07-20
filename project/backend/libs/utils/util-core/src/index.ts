@@ -5,3 +5,4 @@ export * from './lib/entity.interface';
 export * from './lib/brokers';
 export * from './lib/mail';
 export * from './lib/exceptions';
+export * from './lib/jwt';

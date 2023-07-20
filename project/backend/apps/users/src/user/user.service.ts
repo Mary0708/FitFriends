@@ -1,17 +1,18 @@
-import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
-import { User, RefreshTokenPayload, UserRole } from '@fit-friends/shared/app-types';
+import { User, RefreshTokenPayload, UserRole, TokenLogin } from '@fit-friends/shared/app-types';
 import { RefreshTokenService } from '../refresh-token/refresh-token.service';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginUserDto } from '../dto/login-user.dto';
 import { UserMessages } from './user.constant';
-import { ConfigService } from '@nestjs/config';
+import { ConfigService, ConfigType } from '@nestjs/config';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserQuery } from '../query/user.query';
-import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UsersNotFoundException } from '@fit-friends/utils/util-core';
+import { UserExistsException, UserFriendIdException, UserNotFoundIdException, UserRoleChangeException, UsersNotFoundException, createJWTPayload } from '@fit-friends/utils/util-core';
+import { jwtConfig } from '@fit-friends/config/config-users';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,7 @@ export class UserService {
     private readonly jwtService: JwtService,
     private readonly refreshTokenService: RefreshTokenService,
     private readonly logger: Logger,
+    @Inject (jwtConfig.KEY) private readonly jwtOptions: ConfigType<typeof jwtConfig>,
   ) { }
 
   private async checkUserIdMatch(userFirstId: number, userSecondId: number): Promise<User[]> {
@@ -73,28 +75,24 @@ export class UserService {
     return existUser;
   }
 
-  public async loginUser(user: Pick<User, 'id' | 'email' | 'name' | 'role'>, refreshTokenId?: string) {
-    const payload = {
-      sub: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-    };
+  public async createUserToken(user: User, tokenId: string, tokenInfo?: TokenLogin) {
+   
+    if (tokenInfo && tokenInfo.token && tokenInfo.userIdAuth === user.id.toString()) {
+      return {accessToken: tokenInfo.token,  description: 'The user is logged in' }
+    }
 
-    await this.refreshTokenService.deleteRefreshSession(refreshTokenId);
-
-    const refreshTokenPayload: RefreshTokenPayload = { ...payload, refreshTokenId: randomUUID() }
-
-    await this.refreshTokenService.createRefreshSession(refreshTokenPayload);
+    const accessTokenPayload = createJWTPayload(user);
+    await this.refreshTokenService.deleteRefreshSession(tokenId);
+    const refreshTokenPayload = { ...accessTokenPayload, tokenId: crypto.randomUUID() };
+    await this.refreshTokenService.createRefreshSession(refreshTokenPayload)
 
     return {
-      email: user.email,
-      access_token: await this.jwtService.signAsync(payload),
-      refresh_token: await this.jwtService.signAsync(refreshTokenPayload, {
-        secret: this.configService.get<string>('jwt.refreshTokenSecret'),
-        expiresIn: this.configService.get<string>('jwt.refreshTokenExpiresIn')
+      accessToken: await this.jwtService.signAsync(accessTokenPayload),
+      refreshToken: await this.jwtService.signAsync(refreshTokenPayload, {
+        secret: this.jwtOptions.refreshTokenSecret,
+        expiresIn: this.jwtOptions.refreshTokenExpiresIn
       })
-    };
+    }
   }
 
   async getUsers(query: UserQuery): Promise<User[]> {

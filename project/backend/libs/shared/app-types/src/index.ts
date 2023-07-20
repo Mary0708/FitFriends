@@ -36,3 +36,5 @@ export * from './lib/token.type'
 export * from './lib/request-with-token-payload.interface'
 export * from './lib/token-payload.type'
 export * from './lib/refresh-token-payload.interface';
+export * from './lib/token-login.interface'
+
