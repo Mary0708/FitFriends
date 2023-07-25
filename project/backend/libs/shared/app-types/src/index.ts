@@ -6,7 +6,7 @@ export * from './lib/user-level.enum'
 export * from './lib/location.enum'
 export * from './lib/training-style.enum'
 export * from './lib/training-time.enum'
-export * from './lib/request-with-user.type';
+export * from './lib/request-with.user';
 export * from './lib/request-status.enum'
 export * from './lib/request-category.enum'
 export * from './lib/training.type'
