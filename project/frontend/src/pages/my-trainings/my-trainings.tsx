@@ -7,7 +7,7 @@ import { fetchCoachTrainings } from '../../store/api-actions-trainings';
 import TrainingCard from '../../components/training-card/training-card';
 import { Query, TRAINING_TIME, TrainingTime } from '../../types/training';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute, DEFAULT_LIMIT } from '../../const';
+import { AppRoute, DEFAULT_TRAININGS_CATALOG_NUMBER } from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
 
 export default function MyTrainingsPage() {
@@ -15,9 +15,9 @@ export default function MyTrainingsPage() {
   const trainings = useAppSelector(getTrainings);
   const isTrainingsDataLoading = useAppSelector(getTrainingsDataLoadingStatus);
   const total = useAppSelector(getCountAllTrainings);
-  const totalPage = Math.ceil(total.totalTrainings / DEFAULT_LIMIT);
+  const totalPage = Math.ceil(total.totalTrainings / DEFAULT_TRAININGS_CATALOG_NUMBER);
 
-  const [query, setQuery] = useState<Query>({limit: DEFAULT_LIMIT, page: 1});
+  const [query, setQuery] = useState<Query>({limit: DEFAULT_TRAININGS_CATALOG_NUMBER, page: 1});
   const [formValue, setValue] = useState({
     minPrice: 0, maxPrice: total.maxPrice,
     minCalories: 1000, maxCalories: 5000,

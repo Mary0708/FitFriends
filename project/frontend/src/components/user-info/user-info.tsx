@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { LEVEL_TRAIN_ARR, LevelTraining, TRAINING_ARR, TrainingType } from '../../types/questionnaire';
 import { USER_GENDER_ARR, User, UserRole, Gender } from '../../types/user';
 import { LOCATION, Location } from '../../types/location';
 import { DescriptionLn } from '../../const';
 import { editUser } from '../../store/api-actions-user';
 import { useAppDispatch } from '../../hooks';
+import { LevelTraining, TrainingType, TRAINING_ARR, LEVEL_TRAIN_ARR } from '../../types/training';
 
 type Props = {
   user: User;

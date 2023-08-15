@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import Header from '../header/header';
 import { getFriends, getCountFiends, getFriendsDataLoadingStatus } from '../../store/friends-data/selectors';
-import { DEFAULT_LIMIT } from '../../const';
+import { DEFAULT_USERS_CATALOG_NUMBER } from '../../const';
 import FriendCard from '../friend-card/friend-card';
 import { UserRole } from '../../types/user';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
@@ -18,8 +18,8 @@ function FriendsListPage(): JSX.Element {
   const friends = useAppSelector(getFriends);
   const isFriendsDataLoading = useAppSelector(getFriendsDataLoadingStatus);
   const totalFriends = useAppSelector(getCountFiends);
-  const totalPage = Math.ceil(totalFriends / DEFAULT_LIMIT);
-  const [query, setQuery] = useState<Query>({limit: DEFAULT_LIMIT, page: 1});
+  const totalPage = Math.ceil(totalFriends / DEFAULT_USERS_CATALOG_NUMBER);
+  const [query, setQuery] = useState<Query>({limit: DEFAULT_USERS_CATALOG_NUMBER, page: 1});
 
   useEffect(()=>{
     dispatch(fetchCoachFriends(query));

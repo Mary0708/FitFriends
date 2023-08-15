@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Header from '../../components/header/header';
 import { getCountFiends, getFriends, getFriendsDataLoadingStatus } from '../../store/friends-data/selectors';
-import { DEFAULT_LIMIT } from '../../const';
+
 import FriendCard from '../friend-card/friend-card';
 import { UserRole } from '../../types/user';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { Query } from '../../types/training';
 import { fetchUserFriends } from '../../store/api-actions-friends';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { DEFAULT_USERS_CATALOG_NUMBER } from '../../const';
 
 function FriendsListUserPage(): JSX.Element {
   useScrollToUp();
@@ -18,9 +19,9 @@ function FriendsListUserPage(): JSX.Element {
   const friends = useAppSelector(getFriends);
   const isFriendsDataLoading = useAppSelector(getFriendsDataLoadingStatus);
   const totalFriends = useAppSelector(getCountFiends);
-  const totalPage = Math.ceil(totalFriends / DEFAULT_LIMIT);
+  const totalPage = Math.ceil(totalFriends / DEFAULT_USERS_CATALOG_NUMBER);
 
-  const [query, setQuery] = useState<Query>({limit: DEFAULT_LIMIT, page: 1});
+  const [query, setQuery] = useState<Query>({limit: DEFAULT_USERS_CATALOG_NUMBER, page: 1});
   useEffect(()=>{
     dispatch(fetchUserFriends(query));
   }, [dispatch, query]);

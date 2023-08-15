@@ -1,13 +1,14 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace} from '../../const';
-import {TrainingData} from '../../types/state';
-import {editTraining, fetchCoachTrainings, postTraining, fetchCoachTraining, fetchUserTrainings, fetchCatalogTrainings, fetchCoachOtherTrainings, fetchCountTrainings} from '../api-actions-trainings';
+import { createSlice } from '@reduxjs/toolkit';
+import { NameSpace } from '../../const';
+import { TrainingData } from '../../types/state';
+import { editTraining, fetchCoachTrainings, postTraining, fetchCoachTraining, fetchUserTrainings, fetchCatalogTrainings, fetchCoachOtherTrainings, fetchCountTrainings } from '../api-actions-trainings';
 
 const initialState: TrainingData = {
   trainings: [],
   countAllTrainings: {
     totalTrainings: 0,
-    maxPrice: 0},
+    maxPrice: 0
+  },
   isLoadingCountAllTrainings: false,
   userTrainings: [],
   coachTrainings: [],
@@ -15,11 +16,12 @@ const initialState: TrainingData = {
   isCoachTrainingsLoading: false,
   hasError: false,
   isTrainingLoading: false,
-  training: null,
+  training: {
+    id: '',
+  },
   hasErrorPost: false,
   isLoadingPostTraining: false
 };
-
 
 export const trainingsData = createSlice({
   name: NameSpace.Trainings,

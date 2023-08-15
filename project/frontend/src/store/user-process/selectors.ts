@@ -7,7 +7,7 @@ export const getAuthCheckedStatus = (state: State): boolean => state[NameSpace.U
 export const getAuthInfo = (state: State): UserData | null => state[NameSpace.User].authInfo;
 export const getAuthInfoDataLoadingStatus = (state: State): boolean => state[NameSpace.User].isAuthInfoLoading;
 export const getHasErrorLogin = (state: State): boolean => state[NameSpace.User].hasErrorLogin;
-export const getcheckEmail = (state: State): boolean => state[NameSpace.User].existsEmail;
+export const getCheckEmail = (state: State): boolean => state[NameSpace.User].existsEmail;
 export const getCreateUserInfo = (state: State): CreateUser | null => state[NameSpace.User].createUser;
 export const getUser = (state: State): User => state[NameSpace.User].user;
 export const getSignUserLoading = (state: State): boolean => state[NameSpace.User].isUserLoading;

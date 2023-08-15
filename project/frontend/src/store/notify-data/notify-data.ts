@@ -10,7 +10,6 @@ const initialState: NotifyData = {
   isNotifyLoadDelete: false
 };
 
-
 export const notifyData = createSlice({
   name: NameSpace.Notify,
   initialState,

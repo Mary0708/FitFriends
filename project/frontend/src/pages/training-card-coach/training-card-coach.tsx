@@ -10,8 +10,8 @@ import { getComments } from '../../store/comment-data/selectors';
 import { fetchUserOrder, reduceOrder } from '../../store/api-actions-order';
 import { getOrder } from '../../store/orders-data/selectors';
 import { MIN_TITLE_LENGTH, MAX_TITLE_LENGTH } from '../../const';
-import { getTraining } from '../../store/trainings-data/selectors.js';
-import { getUser } from '../../store/user-process/selectors.js';
+import { getTraining } from '../../store/trainings-data/selectors';
+import { getUser } from '../../store/user-process/selectors';
 
 enum FormFieldName {
   title = 'title',

@@ -10,11 +10,11 @@ import { adaptAvatarToServer, adaptUserEditToServer, adaptUserToServer } from '.
 import { adaptUserToClient } from '../utils/adapters/adaptersToClient';
 import { setAuthInfo, setUser } from './user-process/user-process';
 import { Query } from '../types/training';
-import { User, UserRole, CreateUser, FileType, UserEdit, UserData } from '../types/user.js';
+import { User, UserRole, CreateUser, FileType, UserEdit, UserData } from '../types/user';
 
 export const Action = {
-  CHEK_USER: 'user/checkAuthAction',
-  CHEK_EMAIL: 'user/checkEmail',
+  CHECK_USER: 'user/checkAuthAction',
+  CHECK_EMAIL: 'user/checkEmail',
   LOGIN_USER: 'user/login',
   REGISTER_USER: 'user/register',
   EDIT_USER: 'user/edit',
@@ -31,7 +31,7 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  Action.CHEK_USER,
+  Action.CHECK_USER,
   async (_arg, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<UserData>(APIRoute.CheckUser);
@@ -82,7 +82,7 @@ export const checkEmail = createAsyncThunk<string, AuthData, {
   state: State;
   extra: AxiosInstance;
 }>(
-  Action.CHEK_EMAIL,
+  Action.CHECK_EMAIL,
   async ({ login: email }, { dispatch, extra: api }) => {
     const { data } = await api.post<string>(APIRoute.CheckEmail, { email });
     if (data) {

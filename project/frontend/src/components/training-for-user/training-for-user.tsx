@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchCoachTraining, fetchComments } from '../../store/api-actions-trainings';
 import { fetchUserOrder } from '../../store/api-actions-order';
 import { useAppDispatch } from '../../hooks';
-import SpecialForYou from './special-for-you.js';
+import SpecialForYou from './special-for-you';
 
 type Props = {
   userTrainings: Training[];

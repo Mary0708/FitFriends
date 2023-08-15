@@ -5,7 +5,7 @@ import { AppRoute } from '../../const';
 import { UserRole } from '../../types/user';
 import { getNotifications } from '../../store/notify-data/selectors';
 import { getTraining } from '../../store/trainings-data/selectors';
-import NotificationList from '../notification-list/notification-list.js';
+import NotificationList from '../notification-list/notification-list';
 
 export default function Header(): JSX.Element {
   const training = useAppSelector(getTraining);

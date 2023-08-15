@@ -3,8 +3,7 @@ import { USER_ROLE_ARR, USER_GENDER_ARR, CreateUser, UserRole, UserRoleTxt, Gend
 import { LOCATION, Location } from '../../types/location';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { checkEmail } from '../../store/api-actions-user';
-import { getcheckEmail } from '../../store/user-process/selectors';
-import './user-registration-form.css';
+import { getCheckEmail } from '../../store/user-process/selectors';
 
 enum FormFieldName {
   name = 'name',
@@ -26,7 +25,7 @@ export default function UserRegistrationForm({ onSubmit }: UserRegistrationFormP
 
 
   const dispatch = useAppDispatch();
-  const isEmailExists = useAppSelector(getcheckEmail);
+  const isEmailExists = useAppSelector(getCheckEmail);
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

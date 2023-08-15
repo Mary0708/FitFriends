@@ -14,7 +14,6 @@ export const Action = {
   POST_FRIEND: 'friends/postFriend'
 };
 
-
 export const fetchCoachFriends = createAsyncThunk<Friend[], Query | undefined, {
   dispatch: AppDispatch;
   state: State;

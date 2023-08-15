@@ -2,7 +2,6 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CertificateCard from '../certificate-card/certificate-card';
 import { User } from '../../types/user';
-import './certificates-slider.css';
 import CertificateSlide from './certificate-slide';
 
 type Prop ={

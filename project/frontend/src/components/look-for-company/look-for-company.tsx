@@ -1,11 +1,10 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import './look-for-company.css';
 import { COUNT_USERS_READY } from '../../const';
 import FakeImg from '../fake-img/fake-img';
 import UserItem from '../user-item/user-item';
 import { User } from '../../types/user';
-import LookForCompanySlider from './look-for-company-slider.js';
+import LookForCompanySlider from './look-for-company-slider';
 
 type Props = {
   users: User[];

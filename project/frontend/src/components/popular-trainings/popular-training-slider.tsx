@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const.js';
-import { useAppDispatch } from '../../hooks/index.js';
-import { fetchCountTrainings, fetchCatalogTrainings } from '../../store/api-actions-trainings.js';
-import { UserRole } from '../../types/user.js';
+import { AppRoute } from '../../const';
+import { useAppDispatch } from '../../hooks/index';
+import { fetchCountTrainings, fetchCatalogTrainings } from '../../store/api-actions-trainings';
+import { UserRole } from '../../types/user';
 
 type Prop = {
     next?: () => void;

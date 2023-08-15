@@ -1,7 +1,6 @@
 import Carousel from 'react-multi-carousel';
 import { Training } from '../../types/training';
 import 'react-multi-carousel/lib/styles.css';
-import './popular-trainings.css';
 import FakeImg from '../fake-img/fake-img';
 import TrainingCard from '../training-card/training-card';
 import PopularTrainingsButton from './popular-training-slider';

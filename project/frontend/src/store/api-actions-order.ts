@@ -15,7 +15,6 @@ export const Action = {
   REDUCE_ORDER: 'order/reduceOrder'
 };
 
-
 export const fetchCountOrders = createAsyncThunk<number, UserRole, {
   dispatch: AppDispatch;
   state: State;
