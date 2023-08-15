@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Руководство по работе с проектом
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Данный проект создан с помощью [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Структура проекта
 
-In the project directory, you can run:
+---
 
-### `npm start`
+_Не удаляйте и не изменяйте папки и файлы:_
+_`.editorconfig`, `.gitattributes`, `.gitignore`, `package.json`._
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### public
 
-### `npm test`
+Директория для размещения статичных ресурсов (шрифты, стили, изображения и так далее). Корневая директория проекта.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Обратите внимание**, файл `Readme.md`, в директории `public`, содержит описание подготовительного процесса, который вам необходимо выполнить перед тем, как приступать к работе над проектом.
 
-### `npm run build`
+### src
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+В директории размещаются исходный код проекта: компоненты, файлы с тестами, модули и так далее. Структура директории `src` может быть произвольной.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Сценарии
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+После создания проекта вам доступны следующие сценарии. Обратите внимание, для запуска сценария, вы должны находится в директории проекта (`./project`).
 
-### `npm run eject`
+### Запуск проекта
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+После запуска, приложение доступно для просмотра в браузере по адресу [http://localhost:3000](http://localhost:3000).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+При сохранении изменений, проект перезапускается и обновляется в браузере. Таким образом, вы можете следить за разработкой проекта в режиме реального времени.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Обратите внимание**, режим разработки настроен таким образом, при котором ошибки, найденные статическим анализатором кода **ESLint**, отображаются в той же вкладке браузера, в которой запущен проект.
 
-## Learn More
+### Запуск тестов
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Запуск тестов приложения в интерактивном режиме.
 
-### Code Splitting
+В данном случае, имеются в виду тесты, которые вынесены в отдельные файлы, в имени которых присутствует суффикс `*.test.*`. Например, `app.test.tsx`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Подробную информацию вы можете найти на странице [Запуск тестов](https://facebook.github.io/create-react-app/docs/running-tests).
 
-### Analyzing the Bundle Size
+### Проверка линтером
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run lint
+```
 
-### Making a Progressive Web App
+Запуск проверки проекта статическим анализатором кода **ESLint**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Анализ кода производится только в файлах, которые находятся в директории `src`.
 
-### Advanced Configuration
+**Обратите внимание**, при запуске данной команды, ошибки выводятся в терминал.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Сборка проекта
 
-### Deployment
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Запуск сборки приложения.
 
-### `npm run build` fails to minify
+В процессе сборки приложения, код приложения оптимизируется и минимизируется, для достижения наилучшей производительности.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Во время выполнения инструкций по сборке проекта, в корне проекта создается директория `build`, в которую будут помещены результирующие файлы. После сборки проект готов к публикации.
+
+Подробную информацию вы можете найти на странице [Развертывание проекта](https://facebook.github.io/create-react-app/docs/deployment).
+
+### Извлечение конфигурации проекта
+
+```bash
+npm run eject
+```
+
+**Обратите внимание**, при запуске команды `npm run eject` нет возможности вернуть внесённые изменения обратно!
+
+Выполнение данной команды, `react-scripts` скопирует все конфигурационные файлы и скрипты в корень проекта. Данный процесс позволяет получить полный контроль над конфигурацией проекта.
+
+Не используйте данную команду, если не уверены как именно она работает или к какому результату приведёт ее выполнение.
