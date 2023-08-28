@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/header';
-import OrderItem from '../../components/order-item/order-item';
+import OrderCard from '../../components/order-card/order-card';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCountOrders, getOrders, getOrdersDataLoadingStatus } from '../../store/orders-data/selectors';
 import { AppRoute, ORDERS_LIMIT } from '../../const';
@@ -126,7 +126,7 @@ export default function MyOrdersPage(): JSX.Element {
                 {orders.map((el) =>
                   (
                     <li className="my-orders__item" key={el.id}>
-                      <OrderItem order={el} currentUserRole={UserRole.Coach}/>
+                      <OrderCard order={el} currentUserRole={UserRole.Coach}/>
                     </li>)
                 )}
               </ul>

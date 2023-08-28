@@ -11,7 +11,7 @@ type Props = {
   currentUserRole: UserRole;
 }
 
-export default function OrderItem({ order, currentUserRole }: Props): JSX.Element {
+export default function OrderCard({ order, currentUserRole }: Props): JSX.Element {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
