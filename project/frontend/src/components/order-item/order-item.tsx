@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { fetchCoachTraining, fetchComments } from '../../store/api-actions-trainings';
 import { Order } from '../../types/order';
 import { UserRole } from '../../types/user';
 import { AppRoute } from '../../const';
-import { fetchUserOrder } from '../../store/api-actions-order';
+import { fetchUserOrder } from '../../store/api-actions/api-actions-order';
+import { fetchCoachTraining, fetchComments } from '../../store/api-actions/api-actions-trainings';
 
 type Props = {
   order: Order;

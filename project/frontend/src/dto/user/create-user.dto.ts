@@ -2,7 +2,6 @@ import { Location } from '../../types/location';
 import { LevelTraining, TrainingType, TrainingTime } from '../../types/training';
 import { UserRole, Gender } from '../../types/user';
 
-
 export class CreateUserDto {
   /**User */
   public name!: string;

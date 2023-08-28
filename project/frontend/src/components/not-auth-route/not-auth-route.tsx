@@ -2,7 +2,6 @@ import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { UserRole } from '../../types/user';
 
-
 type NotAuthRouteProps = {
   restrictedFor: AuthorizationStatus;
   userRole?: UserRole;

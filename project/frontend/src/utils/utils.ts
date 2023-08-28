@@ -4,7 +4,7 @@ export const transformDate = (str: string) => {
   return date;
 };
 
-export const genrateRandomNumber = () => {
+export const generateRandomNumber = () => {
   const min = 1;
   const max = 12;
   const randNum = Math.floor(Math.random() * (max - min + 1)) + min;

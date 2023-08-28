@@ -5,10 +5,6 @@ import { getSignUserLoading, getSignUserOtherLoading, getUser, getUserOther } fr
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect, useState } from 'react';
-import { fetchCoachOtherTrainings } from '../../store/api-actions-trainings';
-import { deleteCoachFriend, deleteFriend, postFriend } from '../../store/api-actions-friends';
-import { createSubscribe, deleteSubscribe, fetchUserOther } from '../../store/api-actions-user';
-import { createRequest } from '../../store/api-actions-request';
 import Carousel from 'react-multi-carousel';
 import TrainingCard from '../../components/training-card/training-card';
 import { getCoachTrainings, getIsCoachTrainingsLoading } from '../../store/trainings-data/selectors';
@@ -20,6 +16,11 @@ import PopupWindow from '../../components/popup-window/popup-window';
 import PopupCertificates from '../../components/popup-certificates/popup-certificates';
 import PopupMap from '../../components/popup-map/popup-map';
 import Trainings from './trainings';
+import { deleteCoachFriend } from '../../store/api-actions/api-actions-coach';
+import { deleteFriend, postFriend } from '../../store/api-actions/api-actions-friends';
+import { createRequest } from '../../store/api-actions/api-actions-request';
+import { fetchCoachOtherTrainings } from '../../store/api-actions/api-actions-trainings';
+import { fetchUserOther, deleteSubscribe, createSubscribe } from '../../store/api-actions/api-actions-user';
 
 const responsive = {
   desktop: {

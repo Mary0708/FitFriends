@@ -1,13 +1,12 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { APIRoute, AppRoute, COUNT_TRAINING_FOR_SEND, DEFAULT_QUERY_LIMIT, MAX_CALORIES_VALUE } from '../const';
+import { NewTraining, Query, TotalTrainInfo, Training } from '../../types/training';
+import { AppDispatch, State } from '../../types/state';
+import { DEFAULT_QUERY_LIMIT, APIRoute, COUNT_TRAINING_FOR_SEND, AppRoute, MAX_CALORIES_VALUE } from '../../const';
+import { NewComment } from '../../types/comment';
+import { FileType, User, UserRole } from '../../types/user';
+import { adaptVideoToServer } from '../../utils/adapters/adaptersToServer';
 import { redirectToRoute } from './action';
-import { FileType, User, UserRole } from '../types/user';
-import { adaptVideoToServer } from '../utils/adapters/adaptersToServer';
-import { Comment, NewComment } from '../types/comment';
-import { Training, NewTraining, TotalTrainInfo, Query } from '../types/training';
-
 
 export const Action = {
   FETCH_COACH_TRAININGS: 'training/fetchCoachTrainings',

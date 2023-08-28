@@ -1,16 +1,16 @@
 import { AxiosError, AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { AuthData } from '../types/auth-data';
-import { APIRoute, AppRoute, DEFAULT_SORT_DIRECTION_USER, HttpCode } from '../const';
-import { saveToken, dropToken } from '../services/token';
+import { AppDispatch, State } from '../../types/state';
+import { APIRoute, HttpCode, AppRoute, DEFAULT_SORT_DIRECTION_USER } from '../../const';
+import { dropToken, saveToken } from '../../services/token';
+import { AuthData } from '../../types/auth-data';
+import { QuestionnaireUser } from '../../types/questionnaire';
+import { UserData, User, UserRole, CreateUser, FileType, UserEdit } from '../../types/user';
+import { adaptUserToClient } from '../../utils/adapters/adaptersToClient';
+import { adaptUserToServer, adaptAvatarToServer, adaptUserEditToServer } from '../../utils/adapters/adaptersToServer';
+import { setAuthInfo, setUser } from '../user-process/user-process';
 import { redirectToRoute } from './action';
-import { QuestionnaireUser } from '../types/questionnaire';
-import { adaptAvatarToServer, adaptUserEditToServer, adaptUserToServer } from '../utils/adapters/adaptersToServer';
-import { adaptUserToClient } from '../utils/adapters/adaptersToClient';
-import { setAuthInfo, setUser } from './user-process/user-process';
-import { Query } from '../types/training';
-import { User, UserRole, CreateUser, FileType, UserEdit, UserData } from '../types/user';
+import { Query } from '../../types/training';
 
 export const Action = {
   CHECK_USER: 'user/checkAuthAction',

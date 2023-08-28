@@ -1,10 +1,10 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { APIRoute, ORDERS_LIMIT } from '../const';
-import { UserRole } from '../types/user';
-import { Query } from '../types/training';
-import { NewOrder, Order } from '../types/order';
+import { AppDispatch, State } from '../../types/state';
+import { APIRoute, ORDERS_LIMIT } from '../../const';
+import { Order, NewOrder } from '../../types/order';
+import { UserRole } from '../../types/user';
+import { Query } from '../../types/training';
 
 export const Action = {
   FETCH_COUNT_ORDERS: 'order/fetchCountOrders',

@@ -1,12 +1,10 @@
 import CertificateSlider from '../certificates-slider/certificates-slider';
 import { User } from '../../types/user';
 
-
 type Prop = {
   onClose?: () => void;
   coachInfo: User;
 }
-
 
 export default function PopupCertificates({ coachInfo, onClose }: Prop): JSX.Element {
   return (

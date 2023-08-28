@@ -1,9 +1,9 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { APIRoute, DEFAULT_QUERY_LIMIT } from '../const';
-import { User, UserRole, Friend } from '../types/user';
-import { Query } from '../types/training';
+import { AppDispatch, State } from '../../types/state';
+import { DEFAULT_QUERY_LIMIT, APIRoute } from '../../const';
+import { Friend, UserRole, User } from '../../types/user';
+import { Query } from '../../types/training';
 
 export const Action = {
   FETCH_COACH_FRIENDS: 'friends/fetchCoachFriends',

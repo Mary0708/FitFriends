@@ -17,8 +17,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/header';
 import { getCountAllTrainings, getTrainings, getTrainingsDataLoadingStatus } from '../../store/trainings-data/selectors';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { fetchCatalogTrainings } from '../../store/api-actions-trainings';
 import TrainingCard from '../../components/training-card/training-card';
+import { fetchCatalogTrainings } from '../../store/api-actions/api-actions-trainings';
 
 export default function TrainingsCatalogPage() {
   const scrollToTop = () => {

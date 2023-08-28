@@ -3,13 +3,13 @@ import MultiRangeSlider, { ChangeResult } from 'multi-range-slider-react';
 import Header from '../../components/header/header';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCountAllTrainings, getTrainings, getTrainingsDataLoadingStatus } from '../../store/trainings-data/selectors';
-import { fetchCatalogTrainings } from '../../store/api-actions-trainings';
 import TrainingCard from '../../components/training-card/training-card';
 import { Query, TRAINING_ARR, TrainingType } from '../../types/training';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, DEFAULT_CALORIES_STEP, DEFAULT_PRICE_NUMBER, DEFAULT_RATING_STEP, DEFAULT_TRAININGS_CATALOG_NUMBER, MAX_CALORIES_VALUE, MAX_PRICE_NUMBER, MAX_RATING_NUMBER, MIN_CALORIES_VALUE, MIN_RATING_NUMBER } from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
+import { fetchCatalogTrainings } from '../../store/api-actions/api-actions-trainings';
 
 export default function CatalogTrainingsPage() {
   useScrollToUp();

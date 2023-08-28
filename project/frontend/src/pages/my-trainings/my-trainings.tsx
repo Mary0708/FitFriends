@@ -3,12 +3,12 @@ import MultiRangeSlider, { ChangeResult } from 'multi-range-slider-react';
 import Header from '../../components/header/header';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCountAllTrainings, getTrainings, getTrainingsDataLoadingStatus } from '../../store/trainings-data/selectors';
-import { fetchCoachTrainings } from '../../store/api-actions-trainings';
 import TrainingCard from '../../components/training-card/training-card';
 import { Query, TRAINING_TIME, TrainingTime } from '../../types/training';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, DEFAULT_TRAININGS_CATALOG_NUMBER } from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { fetchCoachTrainings } from '../../store/api-actions/api-actions-trainings';
 
 export default function MyTrainingsPage() {
   const dispatch = useAppDispatch();

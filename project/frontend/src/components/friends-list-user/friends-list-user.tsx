@@ -8,9 +8,9 @@ import { UserRole } from '../../types/user';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
 import { useEffect, useState } from 'react';
 import { Query } from '../../types/training';
-import { fetchUserFriends } from '../../store/api-actions-friends';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { DEFAULT_USERS_CATALOG_NUMBER } from '../../const';
+import { fetchUserFriends } from '../../store/api-actions/api-actions-friends';
 
 function FriendsListUserPage(): JSX.Element {
   useScrollToUp();

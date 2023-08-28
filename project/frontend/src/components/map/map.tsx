@@ -6,7 +6,6 @@ type MapProps = {
   position: LatLngExpression;
 };
 
-
 export default function MapView({ position }: MapProps) {
   return (
     <div className="popup__map">

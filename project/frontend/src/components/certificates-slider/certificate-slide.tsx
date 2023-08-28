@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from 'react';
 import { useAppDispatch } from '../../hooks/index';
-import { postCertificate } from '../../store/api-actions-coach';
 import { FileType } from '../../types/user';
+import { postCertificate } from '../../store/api-actions/api-actions-coach';
 
 type PropBtn ={
     next?: () => void;

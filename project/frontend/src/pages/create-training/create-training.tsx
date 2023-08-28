@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import Header from '../../components/header/header';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { postTraining } from '../../store/api-actions-trainings';
 import { USER_GENDER_ARR, Gender } from '../../types/user';
 import { DescriptionLn, MAX_TITLE_LENGTH, MIN_TITLE_LENGTH } from '../../const';
 import { getIsLoadingPostTraining, getErrorPost } from '../../store/trainings-data/selectors';
-import { genrateRandomNumber } from '../../utils/utils';
+import { generateRandomNumber } from '../../utils/utils';
 import { TrainingType, TrainingTime, LevelTraining, TRAINING_ARR, TRAINING_TIME, LEVEL_TRAIN_ARR } from '../../types/training';
+import { postTraining } from '../../store/api-actions/api-actions-trainings';
 
 enum FormFieldName {
   title = 'title',
@@ -38,7 +38,7 @@ export default function CreateTrainingPage(): JSX.Element {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const randImg = genrateRandomNumber();
+    const randImg = generateRandomNumber();
     const data = {
       title: String(formData.get(FormFieldName.title)),
       levelTraining: currentAria.levelTr,
@@ -56,13 +56,11 @@ export default function CreateTrainingPage(): JSX.Element {
     dispatch(postTraining(data));
   };
 
-
   const handleToggleButtonClick = (nameAria: string) => {
     if (nameAria === 'trType' || nameAria === 'trTime' || nameAria === 'levelTr') {
       setIsOpened({ ...isOpened, [nameAria]: !isOpened[nameAria] });
     }
   };
-
 
   const handleAriaChange = (evt: React.MouseEvent<HTMLLIElement>, nameAria: string) => {
     setIsOpened({ ...isOpened, [nameAria]: false });

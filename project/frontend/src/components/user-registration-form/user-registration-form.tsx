@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { USER_ROLE_ARR, USER_GENDER_ARR, CreateUser, UserRole, UserRoleTxt, Gender } from '../../types/user';
 import { LOCATION, Location } from '../../types/location';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { checkEmail } from '../../store/api-actions-user';
 import { getCheckEmail } from '../../store/user-process/selectors';
+import { checkEmail } from '../../store/api-actions/api-actions-user';
 
 enum FormFieldName {
   name = 'name',

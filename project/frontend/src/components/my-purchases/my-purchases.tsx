@@ -5,10 +5,10 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCountOrders, getOrders, getOrdersUserLoadingStatus } from '../../store/orders-data/selectors';
 import { AppRoute, ORDERS_LIMIT } from '../../const';
 import { useEffect, useState } from 'react';
-import { fetchUserOrders } from '../../store/api-actions-order';
 import { UserRole } from '../../types/user';
 import { Query } from '../../types/training';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { fetchUserOrders } from '../../store/api-actions/api-actions-order';
 
 export default function MyPurchases(): JSX.Element {
   const dispatch = useAppDispatch();

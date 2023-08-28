@@ -1,10 +1,11 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { APIRoute } from '../const';
-import { StatusRequest, TrainingRequest } from '../types/training';
-import { Notify } from '../types/notify';
 import { fetchCoachFriends } from './api-actions-friends';
+import { AppDispatch, State } from '../../types/state';
+import { APIRoute } from '../../const';
+import { Notify } from '../../types/notify';
+import { TrainingRequest } from '../../types/training';
+import { StatusRequest } from '../../types/user';
 
 export const Action = {
   CREATE_REQUEST: 'request/createRequest',

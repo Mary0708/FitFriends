@@ -8,8 +8,8 @@ import { UserRole } from '../../types/user';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
 import { useEffect, useState } from 'react';
 import { Query } from '../../types/training';
-import { fetchCoachFriends } from '../../store/api-actions-friends';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { fetchCoachFriends } from '../../store/api-actions/api-actions-friends';
 
 function FriendsListPage(): JSX.Element {
   useScrollToUp();

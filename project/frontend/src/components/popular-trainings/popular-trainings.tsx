@@ -18,7 +18,6 @@ const responsiveFour = {
   }
 };
 
-
 export default function PopularTrainings({ trainings }: Props): JSX.Element {
   return (
     <section className="popular-trainings">

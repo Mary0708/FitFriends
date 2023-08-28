@@ -8,9 +8,9 @@ import { getUsers, getCountUsers, getSignUserCatalogLoading } from '../../store/
 import { LOCATION, Location } from '../../types/location';
 import { USER_ROLE_ARR_TYPE, UserRole } from '../../types/user';
 import UserItem from '../../components/user-item/user-item';
-import { fetchUserCatalog } from '../../store/api-actions-user';
 import useScrollToUp from '../../hooks/use-scroll-to-up/use-scroll-to-up';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { fetchUserCatalog } from '../../store/api-actions/api-actions-user';
 
 export default function CatalogUsersPage() {
   useScrollToUp();

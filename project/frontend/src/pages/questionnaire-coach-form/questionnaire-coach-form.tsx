@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { registerCoach } from '../../store/api-actions-coach';
 import { CreateUser } from '../../types/user';
 import { SuccessCoach } from '../../const';
 import { TrainingType, LevelTraining, TRAINING_ARR, LEVEL_TRAIN_ARR } from '../../types/training';
+import { registerCoach } from '../../store/api-actions/api-actions-coach';
 
 enum FormFieldName {
   levelTraining = 'levelTraining',

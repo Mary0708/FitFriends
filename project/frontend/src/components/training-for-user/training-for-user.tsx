@@ -3,10 +3,10 @@ import { Training } from '../../types/training';
 import { AppRoute, COUNT_TRAINING_FOR_YOU } from '../../const';
 import FakeImg from '../fake-img/fake-img';
 import { useNavigate } from 'react-router-dom';
-import { fetchCoachTraining, fetchComments } from '../../store/api-actions-trainings';
-import { fetchUserOrder } from '../../store/api-actions-order';
 import { useAppDispatch } from '../../hooks';
 import SpecialForYou from './special-for-you';
+import { fetchUserOrder } from '../../store/api-actions/api-actions-order';
+import { fetchCoachTraining, fetchComments } from '../../store/api-actions/api-actions-trainings';
 
 type Props = {
   userTrainings: Training[];

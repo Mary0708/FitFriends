@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getErrorPost } from '../../store/trainings-data/selectors';
 import { CommentLn, DEFAULT_RATING, RATINGS } from '../../const';
 import { toast } from 'react-toastify';
-import { postComment } from '../../store/api-actions-trainings';
+import { postComment } from '../../store/api-actions/api-actions-trainings';
 
 type Prop = {
   onClose?: () => void;

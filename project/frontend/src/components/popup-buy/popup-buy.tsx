@@ -13,7 +13,6 @@ type Props = {
   onClose: () => void;
 }
 
-
 export default function PopupBuy({ training, onClose }: Props): JSX.Element {
   const [countTraining, setCountTraining] = useState(COUNT_ORDER_DEFAULT);
   const dispatch = useAppDispatch();

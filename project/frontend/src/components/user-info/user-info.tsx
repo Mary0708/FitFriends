@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { USER_GENDER_ARR, User, UserRole, Gender } from '../../types/user';
 import { LOCATION, Location } from '../../types/location';
 import { DescriptionLn } from '../../const';
-import { editUser } from '../../store/api-actions-user';
 import { useAppDispatch } from '../../hooks';
 import { LevelTraining, TrainingType, TRAINING_ARR, LEVEL_TRAIN_ARR } from '../../types/training';
+import { editUser } from '../../store/api-actions/api-actions-user';
 
 type Props = {
   user: User;

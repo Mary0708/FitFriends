@@ -4,8 +4,6 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
 import PopupWindow from '../../components/popup-window/popup-window';
 import PopupFeedback from '../../components/popup-feedback/popup-feedback';
-import { reduceOrder, fetchUserOrder } from '../../store/api-actions-order';
-import { fetchCoachTraining } from '../../store/api-actions-trainings';
 import { getOrder } from '../../store/orders-data/selectors';
 import PopupBuy from '../../components/popup-buy/popup-buy';
 import { getComments } from '../../store/comment-data/selectors';
@@ -13,6 +11,8 @@ import CommentCard from '../../components/comment-card/comment-card';
 import { MIN_TITLE_LENGTH, MAX_TITLE_LENGTH } from '../../const';
 import { getTraining } from '../../store/trainings-data/selectors';
 import { getUser } from '../../store/user-process/selectors';
+import { reduceOrder, fetchUserOrder } from '../../store/api-actions/api-actions-order';
+import { fetchCoachTraining } from '../../store/api-actions/api-actions-trainings';
 
 enum FormFieldName {
   title = 'title',

@@ -1,14 +1,14 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
-import { APIRoute, AppRoute } from '../const';
-import { saveToken } from '../services/token';
-import { redirectToRoute } from './action';
-import { User, CreateUser, FileType, Friend, UserData } from '../types/user';
-import { QuestionnaireCoach } from '../types/questionnaire';
-import { adaptAvatarToServer, adaptCertificateToServer, adaptCoachToServer } from '../utils/adapters/adaptersToServer';
-import { setAuthInfo, setUser } from './user-process/user-process';
 import { fetchUser } from './api-actions-user';
+import { APIRoute, AppRoute } from '../../const';
+import { saveToken } from '../../services/token';
+import { QuestionnaireCoach } from '../../types/questionnaire';
+import { AppDispatch, State } from '../../types/state';
+import { CreateUser, FileType, UserData, User, Friend } from '../../types/user';
+import { adaptCoachToServer, adaptAvatarToServer, adaptCertificateToServer } from '../../utils/adapters/adaptersToServer';
+import { setAuthInfo, setUser } from '../user-process/user-process';
+import { redirectToRoute } from './action';
 
 export const Action = {
   REGISTER_COACH: 'coach/register',

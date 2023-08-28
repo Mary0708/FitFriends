@@ -22,10 +22,10 @@ import NotAuthRoute from '../not-auth-route/not-auth-route';
 import MyPurchases from '../my-purchases/my-purchases';
 import AccountUserPage from '../../pages/personal-account-user/personal-account-user';
 import UserCardPage from '../../pages/user-card/user-card';
-import { fetchUser } from '../../store/api-actions-user';
 import FriendsListUserPage from '../friends-list-user/friends-list-user';
 import TrainingCardUser from '../../pages/training-card-user/training-card-user';
 import TrainingCardCoach from '../../pages/training-card-coach/training-card-coach';
+import { fetchUser } from '../../store/api-actions/api-actions-user';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();

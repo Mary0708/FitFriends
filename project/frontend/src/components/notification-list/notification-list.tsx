@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { deleteNotify, fetchNotify } from '../../store/api-actions-request';
 import { Notify } from '../../types/notify';
 import { getSignNotifyLoadDelete, getErrorDeleteNotify } from '../../store/notify-data/selectors';
+import { deleteNotify, fetchNotify } from '../../store/api-actions/api-actions-request';
 
 const MAX_COUNT_NOTIFY = 5;
 

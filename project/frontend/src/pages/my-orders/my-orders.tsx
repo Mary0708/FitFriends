@@ -5,9 +5,9 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCountOrders, getOrders, getOrdersDataLoadingStatus } from '../../store/orders-data/selectors';
 import { AppRoute, ORDERS_LIMIT } from '../../const';
 import { useEffect, useState } from 'react';
-import { fetchCoachOrders } from '../../store/api-actions-order';
 import { UserRole } from '../../types/user';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { fetchCoachOrders } from '../../store/api-actions/api-actions-order';
 
 export default function MyOrdersPage(): JSX.Element {
   const dispatch = useAppDispatch();

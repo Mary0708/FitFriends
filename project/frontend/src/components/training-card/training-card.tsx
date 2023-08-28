@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
-import { fetchCoachTraining, fetchComments } from '../../store/api-actions-trainings';
 import { Training } from '../../types/training';
-import { fetchUserOrder } from '../../store/api-actions-order';
+import { fetchUserOrder } from '../../store/api-actions/api-actions-order';
+import { fetchCoachTraining, fetchComments } from '../../store/api-actions/api-actions-trainings';
 
 type Props = {
   training: Training;

@@ -1,8 +1,8 @@
 import {useRef, FormEvent} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loginUser } from '../../store/api-actions-user';
 import {toast} from 'react-toastify';
 import { getHasErrorLogin } from '../../store/user-process/selectors';
+import { loginUser } from '../../store/api-actions/api-actions-user';
 
 export default function LoginPage(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);

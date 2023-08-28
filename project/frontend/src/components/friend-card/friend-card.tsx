@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { acceptRequest, deleteRequest } from '../../store/api-actions-request';
 import { Friend, StatusRequest, UserRole } from '../../types/user';
 import { AppRoute } from '../../const';
+import { acceptRequest, deleteRequest } from '../../store/api-actions/api-actions-request';
 
 type Props = {
   user: Friend;
