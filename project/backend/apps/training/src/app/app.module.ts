@@ -9,6 +9,7 @@ import { RequestModule } from './request/request.module';
 import { GymsModule } from './gyms/gym.module';
 import { CommentsModule } from './comments/comments.module';
 import { TrainingCatalogQuery } from '../query/training-catalog.query';
+import { PrismaModule } from './prisma/prisma.module.js';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { TrainingCatalogQuery } from '../query/training-catalog.query';
     RequestModule,
     GymsModule,
     CommentsModule,
-    TrainingCatalogQuery
+    TrainingCatalogQuery,
+    PrismaModule
    ],
   controllers: [],
   providers: [],
