@@ -1,6 +1,6 @@
 import {subscribeData} from './subscribe-data';
 import {SubscribeData} from '../../types/state';
-import {deleteSubscribe, createSubscribe} from '../api-actions-user';
+import { deleteSubscribe, createSubscribe } from '../api-actions/api-actions-user';
 
 describe('Reducer: subscribe', () => {
   let state: SubscribeData;

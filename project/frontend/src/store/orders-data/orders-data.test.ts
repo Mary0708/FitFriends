@@ -1,7 +1,7 @@
 import {ordersData} from './orders-data';
 import {OrderData} from '../../types/state';
-import {fetchCoachOrders, postOrder, reduceOrder} from '../api-actions-order';
 import {mockOrder} from '../../mocks/mocks';
+import { fetchCoachOrders, postOrder, reduceOrder } from '../api-actions/api-actions-order';
 
 describe('Reducer: order', () => {
   let state: OrderData;
@@ -12,7 +12,7 @@ describe('Reducer: order', () => {
       order: null,
       isOrdersDataLoading: false,
       isOrderDataLoading: false,
-      isOrdersUserDataLoading: false,
+      isOrdersCreateUserLoading: false,
       hasError: false,
       hasErrorPost: false,
       isPostLoading: false,

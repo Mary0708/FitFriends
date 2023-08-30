@@ -1,7 +1,7 @@
 import {friendsData} from './friends-data';
 import {FriendData} from '../../types/state';
-import {fetchCoachFriends, postFriend, deleteFriend} from '../api-actions-friends';
 import {mockFriend} from '../../mocks/mocks';
+import { fetchCoachFriends, postFriend, deleteFriend } from '../api-actions/api-actions-friends';
 
 describe('Reducer: friends', () => {
   let state: FriendData;

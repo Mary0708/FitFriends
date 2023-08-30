@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
-import {fetchNotify, deleteNotify} from '../api-actions-request';
 import { NotifyData } from '../../types/state';
+import { fetchNotify, deleteNotify } from '../api-actions/api-actions-request';
 
 const initialState: NotifyData = {
   notifications: [],

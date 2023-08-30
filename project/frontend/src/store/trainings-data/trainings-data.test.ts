@@ -1,7 +1,7 @@
 import {trainingsData} from './trainings-data';
 import {TrainingData} from '../../types/state';
-import {fetchCoachTrainings, postTraining, fetchCoachTraining, fetchUserTrainings, fetchCoachOtherTrainings, fetchCountTrainings} from '../api-actions-trainings';
 import {mockTraining} from '../../mocks/mocks';
+import { fetchCoachTrainings, fetchCountTrainings, fetchUserTrainings, fetchCoachTraining, postTraining, fetchCoachOtherTrainings } from '../api-actions/api-actions-trainings';
 
 describe('Reducer: trainings', () => {
   let state: TrainingData;
@@ -19,7 +19,9 @@ describe('Reducer: trainings', () => {
       isCoachTrainingsLoading: false,
       hasError: false,
       isTrainingLoading: false,
-      training: null,
+      training: {
+        id: ''
+      },
       hasErrorPost: false,
       isLoadingPostTraining: false
     };

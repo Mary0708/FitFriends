@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {RequestData} from '../../types/state';
-import {acceptRequest, deleteRequest, createRequest} from '../api-actions-request';
+import { acceptRequest, deleteRequest, createRequest } from '../api-actions/api-actions-request';
 
 const initialState: RequestData = {
   hasErrorPost: false,
@@ -9,7 +9,6 @@ const initialState: RequestData = {
   isLoadPost: false,
   isLoadDelete: false
 };
-
 
 export const requestData = createSlice({
   name: NameSpace.Orders,

@@ -3,10 +3,10 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { Training } from '../../types/training';
 import { COUNT_ORDER_DEFAULT } from '../../const';
 import { toast } from 'react-toastify';
-import { postOrder } from '../../store/api-actions-order';
 import { getLoadingPost } from '../../store/orders-data/selectors';
 import { getErrorPost } from '../../store/trainings-data/selectors';
 import { PAY_OPTION, PaymentOption } from '../../types/order';
+import { postOrder } from '../../store/api-actions/api-actions-order';
 
 type Props = {
   training: Training;

@@ -17,7 +17,7 @@ export class RefreshTokenService {
     const count = +this.configService.get<string>('jwt.refreshTokenExpiresIn').slice(0, -1);
     const unit = this.configService.get<string>('jwt.refreshTokenExpiresIn').at(-1);
     const refreshToken = new RefreshTokenEntity({
-      tokenId: payload.refreshTokenId,
+      tokenId: payload.tokenId,
       createdAt: new Date(),
       userId: payload.sub,
       expiresIn: dayjs().add(count, unit as ManipulateType).toDate()

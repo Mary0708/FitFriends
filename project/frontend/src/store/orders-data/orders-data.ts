@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {OrderData} from '../../types/state';
-import {fetchCoachOrders, postOrder, fetchUserOrders, reduceOrder, fetchUserOrder, fetchCountOrders} from '../api-actions-order';
+import { fetchCoachOrders, fetchUserOrders, fetchCountOrders, fetchUserOrder, postOrder, reduceOrder } from '../api-actions/api-actions-order';
 
 const initialState: OrderData = {
   orders: [],
@@ -15,7 +15,6 @@ const initialState: OrderData = {
   hasErrorReduce: false,
   countOrders: 0
 };
-
 
 export const ordersData = createSlice({
   name: NameSpace.Orders,

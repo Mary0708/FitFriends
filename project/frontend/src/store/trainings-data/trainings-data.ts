@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { TrainingData } from '../../types/state';
-import { editTraining, fetchCoachTrainings, postTraining, fetchCoachTraining, fetchUserTrainings, fetchCatalogTrainings, fetchCoachOtherTrainings, fetchCountTrainings } from '../api-actions-trainings';
+import { fetchCoachTrainings, fetchCountTrainings, fetchUserTrainings, fetchCatalogTrainings, fetchCoachTraining, postTraining, editTraining, fetchCoachOtherTrainings } from '../api-actions/api-actions-trainings';
 
 const initialState: TrainingData = {
   trainings: [],

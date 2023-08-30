@@ -1,6 +1,6 @@
 import {requestData} from './request-data';
 import {RequestData} from '../../types/state';
-import {acceptRequest, deleteRequest, createRequest} from '../api-actions-request';
+import { acceptRequest, deleteRequest, createRequest } from '../api-actions/api-actions-request';
 
 describe('Reducer: request', () => {
   let state: RequestData;

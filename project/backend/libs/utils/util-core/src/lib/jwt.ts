@@ -1,8 +1,8 @@
-import { TokenPayload, User } from '@project/shared/shared-types';
+import { TokenPayload, User } from '@fit-friends/shared/app-types';
 
 export function createJWTPayload(user: User): TokenPayload {
   return {
-    sub: user._id,
+    sub: user.id,
     email: user.email,
     role: user.role,
     name: user.name,

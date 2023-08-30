@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {FriendData} from '../../types/state';
-import {deleteFriend, fetchCoachFriends, postFriend, fetchUserFriends, fetchCountFriends, deleteCoachFriend} from '../api-actions-friends';
+import { deleteCoachFriend } from '../api-actions/api-actions-coach';
+import { fetchCoachFriends, fetchUserFriends, fetchCountFriends, postFriend, deleteFriend } from '../api-actions/api-actions-friends';
 
 const initialState: FriendData = {
   friends: [],

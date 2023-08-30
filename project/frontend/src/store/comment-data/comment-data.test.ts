@@ -1,7 +1,7 @@
 import {commentsData} from './comment-data';
 import {CommentData} from '../../types/state';
-import {fetchComments, postComment} from '../api-actions-trainings';
 import {mockComment} from '../../mocks/mocks';
+import { fetchComments, postComment } from '../api-actions/api-actions-trainings';
 
 describe('Reducer: comments', () => {
   let state: CommentData;

@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { randomUUID } from 'crypto';
-import { User, RefreshTokenPayload, UserRole, TokenLogin } from '@fit-friends/shared/app-types';
+import { User, TokenLogin } from '@fit-friends/shared/app-types';
 import { RefreshTokenService } from '../refresh-token/refresh-token.service';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';

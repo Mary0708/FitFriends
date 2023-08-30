@@ -2,7 +2,7 @@ import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { getJwtConfig } from '@fit-friends/config/config-users';
+import { getJwtOptions } from '@fit-friends/config/config-users';
 import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
@@ -20,7 +20,7 @@ import { NotifyUserModule } from '../user-notify/notify-user.module';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: getJwtConfig,
+      useFactory: getJwtOptions,
     }),
   ],
   controllers: [UserController],

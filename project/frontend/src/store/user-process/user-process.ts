@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace, AuthorizationStatus} from '../../const';
 import {UserProcess} from '../../types/state';
-import {checkAuthAction, loginUser, checkEmail, fetchUser, fetchUserCatalog, fetchUserOther, fetchCountUsers} from '../api-actions-user';
-import {updateCertificate, postCertificate, deleteCertificate} from '../api-actions-coach';
 import { LevelTraining, TrainingTime } from '../../types/training';
 import { Gender, UserRole, UserData, CreateUser, User } from '../../types/user';
 import { Location } from '../../types/location';
+import { updateCertificate, postCertificate, deleteCertificate } from '../api-actions/api-actions-coach';
+import { checkAuthAction, loginUser, checkEmail, fetchUser, fetchUserCatalog, fetchCountUsers, fetchUserOther } from '../api-actions/api-actions-user';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
