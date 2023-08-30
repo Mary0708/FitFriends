@@ -1,5 +1,6 @@
 import { PipeTransform, Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import 'multer';
 
 @Injectable()
 export class AvatarValidationPipe implements PipeTransform {

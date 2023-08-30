@@ -12,7 +12,7 @@ export class AvatarsService {
     private readonly rabbiOptions: ConfigType<typeof uploaderConfig>,
   ) {}
 
-  public async userAvatars(userId: number, fileId: string) {
+  public async userAvatars(userId: string, fileId: string) {
     return this.rabbitClient.request<string>(
       {exchange: 'fitfriends.uploader',
       routingKey: RabbitRouting.UserAvatars,
@@ -20,7 +20,7 @@ export class AvatarsService {
     );
   }
 
-  public async coachCertificate(coachId: number, fileId: string) {
+  public async coachCertificate(coachId: string, fileId: string) {
     return this.rabbitClient.request<string>(
       {exchange: 'fitfriends.uploader',
       routingKey: RabbitRouting.CoachCertificate,
@@ -29,7 +29,7 @@ export class AvatarsService {
   }
 
 
-  public async userBackgroundImg(userId: number, fileId: string) {
+  public async userBackgroundImg(userId: string, fileId: string) {
     return this.rabbitClient.request<string>(
       {exchange: 'fitfriends.uploader',
       routingKey: RabbitRouting.UserBackgroundImg,

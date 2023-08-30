@@ -1,13 +1,12 @@
 import { RequestNotFoundIdException, RequestSameUserException, RequestExistsException, RequestUpdateNotAllowedException, RequestsNotFoundException } from '@fit-friends/utils/util-core';
 import { Injectable, Logger } from '@nestjs/common';
-import { RequestStatus, RequestCategory } from '@prisma/client';
 import { UserService } from 'apps/users/src/user/user.service';
 import { CreateRequestDto } from '../../dto/create-request.dto';
 import { RequestQuery } from '../../query/request.query';
 import { UpdateRequestDto } from '../../dto/update-request.dto';
 import { RequestRepository } from './request.repository';
 import { RequestEntity } from './request.entity';
-import { UserRequest } from '@fit-friends/shared/app-types';
+import { RequestCategory, RequestStatus, UserRequest } from '@fit-friends/shared/app-types';
 
 @Injectable()
 export class RequestService {

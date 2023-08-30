@@ -10,7 +10,7 @@ import { ConfigType } from '@nestjs/config';
 import { MongoidValidationPipe } from '@fit-friends/shared/shared-pipes';
 import { AvatarsService } from '../avatars/avatars.service';
 import { ImgTrainingService } from '../img-training/img-training.service';
-import { imageFileFilter, videoFileFilter, avatarFileFilter, pdfFileFilter } from './file.constants.js';
+import { imageFileFilter, videoFileFilter, avatarFileFilter, pdfFileFilter } from './file.constants';
 
 @Controller('files')
 export class FileController {
@@ -45,7 +45,7 @@ export class FileController {
 
   @Post('upload/avatar/:userId')
   @UseInterceptors(FileInterceptor('file', {fileFilter: avatarFileFilter}))
-  public async uploadAvatar(@UploadedFile() file: Express.Multer.File, @Param('userId', MongoidValidationPipe) userId: number) {
+  public async uploadAvatar(@UploadedFile() file: Express.Multer.File, @Param('userId', MongoidValidationPipe) userId: string) {
     const newFile = await this.fileService.saveFile(file, 'avatar', userId);
     await this.avatarsService.userAvatars(userId, newFile.id);
     const path = `${this.applicationConfig.serveRoot}${newFile.path}`;
@@ -54,7 +54,7 @@ export class FileController {
 
   @Post('upload/background/:userId')
   @UseInterceptors(FileInterceptor('file', {fileFilter: imageFileFilter}))
-  public async userBackgroundImg(@UploadedFile() file: Express.Multer.File, @Param('userId', MongoidValidationPipe) userId: number) {
+  public async userBackgroundImg(@UploadedFile() file: Express.Multer.File, @Param('userId', MongoidValidationPipe) userId: string) {
     const newFile = await this.fileService.saveFile(file, 'avatar', userId);
     await this.avatarsService.userBackgroundImg(userId, newFile.id);
     const path = `${this.applicationConfig.serveRoot}${newFile.path}`;
@@ -63,7 +63,7 @@ export class FileController {
 
   @Post('upload/certificate/:coachId')
   @UseInterceptors(FileInterceptor('file', {fileFilter: pdfFileFilter}))
-  public async coachCertificate(@UploadedFile() file: Express.Multer.File, @Param('coachId') coachId: number) {
+  public async coachCertificate(@UploadedFile() file: Express.Multer.File, @Param('coachId') coachId: string) {
     const newFile = await this.fileService.saveFile(file, 'certificate', coachId);
     await this.avatarsService.coachCertificate(coachId, newFile.id);
     const path = `${this.applicationConfig.serveRoot}${newFile.path}`;

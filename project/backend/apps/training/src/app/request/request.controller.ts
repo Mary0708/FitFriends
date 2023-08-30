@@ -1,15 +1,14 @@
-import { RequestWithTokenPayload, TokenPayload } from '@fit-friends/shared/app-types';
+import { RequestWithTokenPayload, TokenPayload, UserRole } from '@fit-friends/shared/app-types';
 import { fillObject } from '@fit-friends/utils/util-core';
 import { RolesGuard, JwtAuthGuard, Roles } from '@fit-friends/utils/util-types';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserRole } from '@prisma/client';
-import { CreateRequestDto } from '../../dto/create-request.dto.js';
-import { UpdateRequestDto } from '../../dto/update-request.dto.js';
-import { RequestQuery } from '../../query/request.query.js';
-import { ApiIndexQuery } from '../gyms/query/gym.api-query.decorator.js';
-import { RequestService } from './request.service.js';
-import { RequestRdo } from './rdo/training-request.rdo.js';
+import { CreateRequestDto } from '../../dto/create-request.dto';
+import { UpdateRequestDto } from '../../dto/update-request.dto';
+import { RequestQuery } from '../../query/request.query';
+import { ApiIndexQuery } from '../gyms/query/gym.api-query.decorator';
+import { RequestService } from './request.service';
+import { RequestRdo } from './rdo/training-request.rdo';
 
 @ApiTags('requests')
 @Controller('requests')

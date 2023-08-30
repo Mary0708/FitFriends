@@ -6,7 +6,6 @@ import { getMongooseOptions } from '@fit-friends/utils/util-core';
 import { AvatarsModule } from './avatars/avatars.module';
 import { ImgTrainingModule } from './img-training/img-training.module';
 
-
 @Module({
   imports: [
     FileModule,
